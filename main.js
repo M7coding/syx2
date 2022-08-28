@@ -199,6 +199,11 @@ function chatMd(usR, tipo){
   if (isGroupAdmins){
     if (tipo == "remove"){
   return m7.groupParticipantsUpdate(from, [usR], "remove")}
+  else if (tipo == "promote"){
+    return m7.groupParticipantsUpdate(from, [usR], "promote")}
+  else if (tipo == "demote"){
+    return m7.groupParticipantsUpdate(from, [usR], "demote")
+  }
   else if (tipo == "add"){
     return m7.groupParticipantsUpdate(from, [usR], "add")
   }}
@@ -253,6 +258,16 @@ break
 case 'sla':
   return enviar("se você não sabe, imagine eu")
 break
+case 'demote':
+case 'tiraradm':
+  chatMd(args, "demote")
+  enviar("que triste mano, virou membro comum")
+break
+case 'promote':
+case 'promover':
+  chatMd(args, "promote")
+  enviar("Usuário promovido a administrador")
+break
 case 'menu':
 await m7.sendMessage(from, {text: "Aguarde..."})
 templateButtons = [
@@ -295,6 +310,10 @@ var templateMessage = {
 │🚩${prefix}add
 │🚩${prefix}encurtar
 │🚩${prefix}limpar
+│🚩${prefix}demote @
+│🚩${prefix}promote @
+│🚩${prefix}grupo f - fecha o grupo
+│🚩${prefix}grupo a - abre o grupo
 │🚩${prefix}banfake - use isso quando um número fake tiver entrado no grupo 
 └───────────────`,
 footer: 'syxBot',
@@ -304,9 +323,11 @@ m7.sendMessage(from, templateMessage)
 break
 case 'ban':
   chatMd(args, "remove")
+  enviar("Usuário removido ")
 break
 case 'add':
   chatMd(args, "add")
+  enviar("Usuário adicionado!")
 break
 case 'pingg':
 case 'ping':
@@ -345,9 +366,31 @@ case 'play':
   }
   
 const { url } = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
-await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {ptt: true}, {quoted: info});
+await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {quoted: info});
 
 break;
+case 'grupo':
+  if (!isGroup){
+    return enviar("Não e um grupo!")
+  }
+  if (!isGroupAdmins){
+    return enviar("Você não e um administrador!")
+  }
+  // if (!isBotGroupAdmins){
+  //  return enviar("O bot não e admin")
+ // }
+  if (args.lenght == 0){
+    return enviar("A = aberto / F = fechado")
+  }
+  if (args == "a"){
+    await m7.groupSettingUpdate(from, 'not_announcement')
+    return enviar("Grupo aberto!")
+  }
+  if (args == "f"){
+    await m7.groupSettingUpdate(from, 'announcement')
+    return enviar("Grupo fechado com sucesso!")
+  }
+  return enviar("Erro desconhecido!")
 case 'encurtar':
   if (args.length == 0){
     return enviar("cadê o link?")
