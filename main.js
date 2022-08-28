@@ -10,6 +10,7 @@ const {
  const pino = require('pino');
  const Pino = require('pino');
  const fs = require('fs');
+ const axios = require("axios")
 const { state, saveState } = useSingleFileAuthState("./qrcode.json")
 const prefix = "."
 // 𝐂𝐨𝐧𝐬𝐨𝐥𝐞 / 𝐓𝐞𝐫𝐦𝐮𝐱
@@ -28,7 +29,7 @@ startBot()}
 } else if(connection === "open") {
 console.log("foda-se a estética, o bagulho funcionando ta bom demais, bot on")
 }})
-// const { fetchJson } = require("./fetcher")
+const { fetchJson } = require("./fetcher")
 
 // 𝐋𝐢𝐧𝐠𝐮𝐚𝐠𝐞𝐧 𝐃𝐨 𝐁𝐨𝐭
 
@@ -161,7 +162,7 @@ if (isCmd && isGroup) {
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
-if (isCmd && isGroup){
+if (!isCmd && isGroup){
   console.log("--------\n mensagem em grupo \n")
   console.log('nome do grupo:', groupName, '\n')
   console.log("nome do user: ", pushname, "\n")
@@ -185,30 +186,37 @@ var templateMessage = {
 ┌───────────────
 │
 ╠〢「 © syxBot 」
-│Ele demora um pouco no .play, não flodem comandos!
-Bot esta com a maioria dos comandos off, estou refazendo eles
+│Ele demora um pouco no .play, não flodem
+|comandos!
+|Bot esta com a maioria dos comandos off, estou
+|refazendo eles
+|
+└───────────────
+┌───────────────
+|HORA: ${hora}
+|PREFIXO: ${prefix}
 └───────────────
 ┌───────────────
 ╠〢「 PESQUISAR/BAIXAR 」
 │
-│💎${prefix}play
-│💎${prefix}playdocument
-│💎${prefix}play2
-│💎${prefix}ytsearch
+│🚩${prefix}play
+│🚩${prefix}playdocument
+│🚩${prefix}play2
+│🚩${prefix}ytsearch
 │
 └───────────────
 ┌───────────────
 ╠〢「 CMDS/TODOS 」
 │
-│💎${prefix}dono
-│💎${prefix}ping
-│💎${prefix}fazernick
-│💎${prefix}imgpralink
-│💎${prefix}menulist
-│💎${prefix}dono
-│💎${prefix}ban
-│💎${prefix}add
-│
+│🚩${prefix}dono
+│🚩${prefix}ping
+│🚩${prefix}fazernick
+│🚩${prefix}imgpralink
+│🚩${prefix}menulist
+│🚩${prefix}dono
+│🚩${prefix}ban
+│🚩${prefix}add
+│🚩${prefix}encurtar
 └───────────────`,
 footer: 'syxBot',
 templateButtons: templateButtons
@@ -228,6 +236,28 @@ break
 
 case 'dono':
 enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
+
+case 'play':
+  await enviar("aguarde")
+  if (args.lenght == 0){
+    enviar("cade a merda do nome da música? n sou adivinho.")
+  }
+  
+const { url } = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
+m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {ptt: true}, );
+enviar("ta ai fdp")
+break;
+case 'encurtar':
+  if (args.length == 0){
+    return enviar("cadê o link?")
+  }
+  const {status, resultado} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/short/tiny?url=${args}`);
+  if (status == true){
+    return enviar(`Link encurtado: ${resultado.link}`)
+  }
+  else{
+    return enviar("Erro desconhecido, contate o desenvolvedor do bot! ")
+  }
 break
 
 default :
