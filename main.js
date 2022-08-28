@@ -118,8 +118,9 @@ const groupMembers = isGroup ? groupMetadata.participants : ''
 
 // const groupDesc = isGroup ? groupMetadata.desc : ''
 
-const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
-const isGroupAdmins = groupAdmins.includes(sender) || false
+const groupAdmins = isGroup ? await groupMembers.filter(v => v.admin !== null).map(v => v.id): '';
+const isGroupAdmins = isGroup ? groupAdmins.includes(sender): false;
+
 const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 const groupName = isGroup ? groupMetadata.subject : ""
 const pushname = info.pushName ? info.pushName : ""
