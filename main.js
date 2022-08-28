@@ -1,7 +1,6 @@
 const {
  default:makeWASocket,
   DisconnectReason,
-  downloadContentFromMessage,
   fetchLatestBaileysVersion,
   useSingleFileAuthState
  } = require('@adiwajshing/baileys');
@@ -212,6 +211,45 @@ function chatMd(usR, tipo){
 }
 switch (comando)
 {
+case 'banfake':
+ var userUm = groupMembers[0]
+ if (!userUm.split('@')[0].startsWith(55)){
+   await enviar("Não pode número fake no gp!")
+   return m7.groupParticipantsUpdate(from, [userUm], "remove")
+ }
+ else {
+   return enviar("Nenhum fake que entrou agora para eu remover!")
+ }
+case "marcar":
+  if (!isGroup){
+    return enviar("Não e um grupo")
+  }
+  
+  if (!isGroupAdmins){
+    return enviar("Somente os adms podem usar isso!")
+  }
+  members_id = []
+
+  jrp = (args.length > 1) ? body.slice(8).trim() : ''
+
+  jrp += '\n\n'
+  for (let mem of groupMembers) {
+  jrp += `*⪧* @${mem.jid.split('@')[0]}\n`
+  members_id.push(mem.jid)
+  } await sleep (5000)
+  mentions(jrp, members_id, true)
+break
+  
+case "clear":
+case "limpar":
+  if (!isGroup) {
+    return enviar("Não e um grupo!")
+  }
+  if (!isGroupAdmins){
+    return enviar("Você tem que ser admin para usar isso!")
+  }
+m7.sendMessage(from, {text: "Chat limpo!\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChat limpo!"})
+break
 case 'sla':
   return enviar("se você não sabe, imagine eu")
 break
@@ -256,6 +294,8 @@ var templateMessage = {
 │🚩${prefix}ban
 │🚩${prefix}add
 │🚩${prefix}encurtar
+│🚩${prefix}limpar
+│🚩${prefix}banfake - use isso quando um número fake tiver entrado no grupo 
 └───────────────`,
 footer: 'syxBot',
 templateButtons: templateButtons
@@ -323,7 +363,10 @@ break
 
 default :
 
-
+if (budy == `${prefix}${comando}`),{
+  
+m7.sendMessage(from, {text: `╭─────────────\n│\n││• Comando: Não Existe\n││• Data: ${data}\n││• Hora: ${hora}\n││• Use .menu\n│\n╰─────────────`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: '━━━━━━━━━━━━━━━', id: `${prefix}menu`}}, ]})
+}
 }
 }
 catch(e) {
