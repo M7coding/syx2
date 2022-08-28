@@ -1,0 +1,11 @@
+{
+  "name": "syxmd",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "author": "M7coding",
+  "dependencies": {
+    "@adiwajshing/baileys": "^4.4.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
