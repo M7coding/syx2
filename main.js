@@ -6,7 +6,7 @@ const {
  } = require('@adiwajshing/baileys');
 
  require("qrcode-terminal");
- 
+ const moment = require("moment-timezone")
  const pino = require('pino');
  const Pino = require('pino');
  const fs = require('fs');
@@ -28,7 +28,7 @@ startBot()}
 } else if(connection === "open") {
 console.log("foda-se a estética, o bagulho funcionando ta bom demais, bot on")
 }})
-const { fetchJson } = require("./fetcher")
+// const { fetchJson } = require("./fetcher")
 
 // 𝐋𝐢𝐧𝐠𝐮𝐚𝐠𝐞𝐧 𝐃𝐨 𝐁𝐨𝐭
 
@@ -229,18 +229,7 @@ break
 case 'dono':
 enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
 break
-case 'encurtar':
-  if (args.length == 0){
-    return enviar("cadê o link?")
-  }
-  const {status, resultado} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/short/tiny?url=${args}`);
-  if (status == true){
-    return enviar(`Link encurtado: ${resultado.link}`)
-  }
-  else{
-    return enviar("Erro desconhecido, contate o desenvolvedor do bot! ")
-  }
-break
+
 default :
 
 
