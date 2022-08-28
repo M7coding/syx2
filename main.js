@@ -363,7 +363,7 @@ break
 
 default :
 
-if (budy == `${prefix}${comando}`),{
+if (budy == `${prefix}${comando}`){
   
 m7.sendMessage(from, {text: `╭─────────────\n│\n││• Comando: Não Existe\n││• Data: ${data}\n││• Hora: ${hora}\n││• Use .menu\n│\n╰─────────────`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: '━━━━━━━━━━━━━━━', id: `${prefix}menu`}}, ]})
 }
