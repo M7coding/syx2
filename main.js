@@ -30,7 +30,7 @@ startBot()}
 console.log("foda-se a estética, o bagulho funcionando ta bom demais, bot on")
 }})
 const { fetchJson } = require("./fetcher")
-
+const admins = JSON.parse(fs.readFileSync("./admins.json"))
 // 𝐋𝐢𝐧𝐠𝐮𝐚𝐠𝐞𝐧 𝐃𝐨 𝐁𝐨𝐭
 
 m7.ev.on("messages.upsert", async m => {
@@ -87,9 +87,12 @@ return `${pad(hours)} Horas ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
 // 𝐎𝐮𝐭𝐫𝐚𝐬 𝐅𝐮𝐧𝐜𝐨𝐞𝐬
 // const isGroup = from.endsWith('@g.us')
 const getGroupAdmins = (participants) => {
-admins = []
-for (let i of participants) {i.isAdmin ? admins.push(i.jid):''}
-return admins}
+  admins = [];
+  for (let i of participants) {
+   i.isAdmin ? admins.push(i.jid): '';
+  }
+  return admins;
+ };
 const itsMe = m.sender == m7.user.id ? true : false
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.m || quoted).mimetype || ''
@@ -110,7 +113,11 @@ const botNumber = m7.user.jid
 const isGroup = info.key.remoteJid.endsWith("@g.us")
 const sender = isGroup ? info.key.participant : info.key.remoteJid
 const groupMetadata = isGroup ? await m7.groupMetadata(from) : ""
+
 const groupMembers = isGroup ? groupMetadata.participants : ''
+
+// const groupDesc = isGroup ? groupMetadata.desc : ''
+
 const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
 const isGroupAdmins = groupAdmins.includes(sender) || false
 const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
@@ -184,7 +191,7 @@ function chatMd(usR, tipo){
     return m7.groupParticipantsUpdate(from, [usR], "add")
   }}
   else {
-   return enviar("Só meu dono pode!")
+   return enviar("Somente os adms podem usar esse comando!")
   }
   
   
@@ -264,11 +271,11 @@ break
 
 case 'dono':
 enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
-
+break
 case 'play':
   await enviar("aguarde")
   if (args.lenght == 0){
-    enviar("cade a merda do nome da música? n sou adivinho.")
+   return enviar("cade a merda do nome da música? n sou adivinho.")
   }
   
 const { url } = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
