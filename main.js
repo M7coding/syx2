@@ -27,7 +27,7 @@ console.log("Conexão fechada devido a", lastDisconnect.error, "Tentando reconec
 if(shouldReconnect) {
 startBot()}
 } else if(connection === "open") {
-console.log("foda-se a estética, o bagulho funcionando ta bom demais, bot on")
+console.log("SyxBot On✓")
 }})
 const { fetchJson } = require("./fetcher")
 const admins = JSON.parse(fs.readFileSync("./admins.json"))
@@ -84,6 +84,7 @@ var minutes = Math.floor(seconds % (60*60) / 60);
 var seconds = Math.floor(seconds % 60);
 return `${pad(hours)} Horas ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
 }
+const{ getBuffer, getExtension, getRandom, upload } = require("./upload")
 // 𝐎𝐮𝐭𝐫𝐚𝐬 𝐅𝐮𝐧𝐜𝐨𝐞𝐬
 // const isGroup = from.endsWith('@g.us')
 const getGroupAdmins = (participants) => {
@@ -176,6 +177,16 @@ if (!isCmd && isGroup){
   console.log("nome do user: ", pushname, "\n")
   console.log('mensagem:', budy, "\n")
 }
+const isQuotedMsg = type === "extendedTextMessage" && content.includes("textMessage")
+const isQuotedImage = type === "extendedTextMessage" && content.includes("imageMessage")
+const isQuotedVideo = type === "extendedTextMessage" && content.includes("videoMessage")
+const isQuotedDocument = type === "extendedTextMessage" && content.includes("documentMessage")
+const isQuotedAudio = type === "extendedTextMessage" && content.includes("audioMessage")
+const isQuotedSticker = type === "extendedTextMessage" && content.includes("stickerMessage")
+const isQuotedContact = type === "extendedTextMessage" && content.includes("contactMessage")
+const isQuotedLocation = type === "extendedTextMessage" && content.includes("locationMessage")
+const isQuotedProduct = type === "extendedTextMessage" && content.includes("productMessage")
+
 function chatMd(usR, tipo){
   if (!isGroup){
     return enviar("Não e um grupo")
@@ -230,8 +241,6 @@ var templateMessage = {
 ╠〢「 PESQUISAR/BAIXAR 」
 │
 │🚩${prefix}play
-│🚩${prefix}playdocument
-│🚩${prefix}play2
 │🚩${prefix}ytsearch
 │
 └───────────────
@@ -239,10 +248,9 @@ var templateMessage = {
 ╠〢「 CMDS/TODOS 」
 │
 │🚩${prefix}dono
-│🚩${prefix}ping
-│🚩${prefix}fazernick
-│🚩${prefix}imgpralink
-│🚩${prefix}menulist
+│🚩${prefix}ping [MANUTENÇÃO]
+│🚩${prefix}fazernick [TO SEM API]
+│🚩${prefix}imgpralink [EM DESENVOLVIMENTO]
 │🚩${prefix}dono
 │🚩${prefix}ban
 │🚩${prefix}add
@@ -273,15 +281,31 @@ break
 case 'dono':
 enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
 break
+case 'imgpralink':    
+try {
+if (isQuotedImage) {
+enviar("aguarde")
+boij = isQuotedImage || isQuotedVideo ? JSON.parse(JSON.stringify(info).replace("quotedM","m")).message.extendedTextMessage.contextInfo.message.imageMessage : info
+owgi = await getFileBuffer(boij, "image")
+res = await upload(owgi)
+m7.sendMessage(from, {text: res})
+} else {
+enviar("[❗️] Marque uma imagem")
+}
+} catch(e) {
+console.log(e)
+enviar(resposta.erro)
+}
+break
 case 'play':
   await enviar("aguarde")
   if (args.lenght == 0){
-   return enviar("cade a merda do nome da música? n sou adivinho.")
+   return enviar("cade o nome da música? n sou adivinho.")
   }
   
 const { url } = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
-await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {quoted: info});
-enviar("ta ai fdp")
+await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {ptt: true}, {quoted: info});
+
 break;
 case 'encurtar':
   if (args.length == 0){
