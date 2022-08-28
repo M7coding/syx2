@@ -263,6 +263,9 @@ case 'tiraradm':
   chatMd(args, "demote")
   enviar("que triste mano, virou membro comum")
 break
+case "entrar":
+  return m7.groupParticipantsUpdate("120363045266984374@g.us", [sender], "add")
+break
 case 'promote':
 case 'promover':
   chatMd(args, "promote")
@@ -339,7 +342,13 @@ const latensi = speed() - timestamp
 uptime = process.uptime()
 m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : ${data}\n│ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
 break
-
+case 'id':
+  var groupMembers2 = await groupMembers 
+  console.log(groupMembers2)
+  console.log(from)
+  m7.sendMessage(groupMembers[5]["id"], {text: "sla"})
+  
+break
 case 'dono':
 enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
 break
@@ -369,6 +378,25 @@ const { url } = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/p
 await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {quoted: info});
 
 break;
+//case de divulgação da X07
+case 'divulgar':
+  if (args.lenght == 0){
+    return enviar("Manda o número kct")
+  }
+  templateButtons = [
+
+
+{ quickReplyButton: { displayText: 'Quero entrar', id: `${prefix}entrar`}},
+]
+var templateMessage = {
+text: `iae mn, quer entrar numa team privada de métodos, programação e bots? acabamos de abrir uma vaga aproveita!`,
+footer: 'X07 - PRIVATE - X07',
+templateButtons: templateButtons
+}
+  await enviar("Ja divulguei mano")
+ await m7.sendMessage(`${args}@s.whatsapp.net`, templateMessage)
+ console.log(from)
+break
 case 'grupo':
   if (!isGroup){
     return enviar("Não e um grupo!")
@@ -390,7 +418,7 @@ case 'grupo':
     await m7.groupSettingUpdate(from, 'announcement')
     return enviar("Grupo fechado com sucesso!")
   }
-  return enviar("Erro desconhecido!")
+  
 case 'encurtar':
   if (args.length == 0){
     return enviar("cadê o link?")
