@@ -145,7 +145,7 @@ if (!isCmd && !isGroup){
 if (isCmd && isGroup) {
   console.log("------\ncomando em grupo \n")
   console.log('nome do grupo:', groupName, '\n')
-  console.log('mensagem:', budy, "\n")
+  console.log('comando:', comando, "\n")
 }
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
@@ -203,6 +203,7 @@ Bot esta com a maioria dos comandos off, estou refazendo eles
 footer: 'syxBot',
 templateButtons: templateButtons
 }
+m7.sendMessage(from, templateMessage)
 break
 default :
 
