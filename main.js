@@ -28,7 +28,7 @@ startBot()}
 } else if(connection === "open") {
 console.log("foda-se a estética, o bagulho funcionando ta bom demais, bot on")
 }})
-
+const { fetchJson } = require("./fetcher")
 
 // 𝐋𝐢𝐧𝐠𝐮𝐚𝐠𝐞𝐧 𝐃𝐨 𝐁𝐨𝐭
 
@@ -74,7 +74,15 @@ button = (type == "buttonsResponseMessage") ? info.message.buttonsResponseMessag
 listMessage = (type == "listResponseMessage") ? info.message.listResponseMessage.title : ""
 
 var pes = (type === "conversation" && info.message.conversation) ? info.message.conversation : (type == "imageMessage") && info.message.imageMessage.caption ? info.message.imageMessage.caption : (type == "videoMessage") && info.message.videoMessage.caption ? info.message.videoMessage.caption : (type == "extendedTextMessage") && info.message.extendedTextMessage.text ? info.message.extendedTextMessage.text : ""
-
+function kyun(seconds){
+function pad(s){
+return (s < 10 ? '0' : '') + s;
+}
+var hours = Math.floor(seconds / (60*60));
+var minutes = Math.floor(seconds % (60*60) / 60);
+var seconds = Math.floor(seconds % 60);
+return `${pad(hours)} Horas ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
+}
 // 𝐎𝐮𝐭𝐫𝐚𝐬 𝐅𝐮𝐧𝐜𝐨𝐞𝐬
 // const isGroup = from.endsWith('@g.us')
 const getGroupAdmins = (participants) => {
@@ -84,7 +92,10 @@ return admins}
 const itsMe = m.sender == m7.user.id ? true : false
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.m || quoted).mimetype || ''
-
+const hora = moment.tz('America/Sao_Paulo').format('HH:mm:ss') 
+const data = moment.tz('America/Sao_Paulo').format('DD/MM/YY')
+const sleep = async (ms) => {
+return new Promise(resolve => setTimeout(resolve, ms))}
 const args = body.trim().split(/ +/).slice(1)
 const q = args.join(' ')
 const comando = body.slice(1).trim().split(/ +/).shift().toLowerCase()
@@ -150,8 +161,8 @@ if (isCmd && isGroup) {
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
-if (!isCmd && isGroup){
-  console.log("--------\ncomando em grupo \n")
+if (isCmd && isGroup){
+  console.log("--------\n mensagem em grupo \n")
   console.log('nome do grupo:', groupName, '\n')
   console.log("nome do user: ", pushname, "\n")
   console.log('mensagem:', budy, "\n")
@@ -197,13 +208,38 @@ Bot esta com a maioria dos comandos off, estou refazendo eles
 │💎${prefix}dono
 │💎${prefix}ban
 │💎${prefix}add
-│💎${prefix}encurtar
 │
 └───────────────`,
 footer: 'syxBot',
 templateButtons: templateButtons
 }
 m7.sendMessage(from, templateMessage)
+break
+case 'pingg':
+case 'ping':
+const varping = speed();
+const ping = speed() - varping
+const timestamp = speed();
+uptime = process.uptime()
+const latensi = speed() - timestamp
+uptime = process.uptime()
+m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : ${data}\n│ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
+break
+
+case 'dono':
+enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
+break
+case 'encurtar':
+  if (args.length == 0){
+    return enviar("cadê o link?")
+  }
+  const {status, resultado} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/short/tiny?url=${args}`);
+  if (status == true){
+    return enviar(`Link encurtado: ${resultado.link}`)
+  }
+  else{
+    return enviar("Erro desconhecido, contate o desenvolvedor do bot! ")
+  }
 break
 default :
 
