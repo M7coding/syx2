@@ -168,6 +168,28 @@ if (!isCmd && isGroup){
   console.log("nome do user: ", pushname, "\n")
   console.log('mensagem:', budy, "\n")
 }
+function chatMd(usR, tipo){
+  if (!isGroup){
+    return enviar("Não e um grupo")
+  }
+  usR = `${usR}@s.whatsapp.net`
+  if (args.length == 0){
+    return enviar("Função incompleta! Verifique o comando!")
+  }
+  
+  if (isGroupAdmins){
+    if (tipo == "remove"){
+  return m7.groupParticipantsUpdate(from, [usR], "remove")}
+  else if (tipo == "add"){
+    return m7.groupParticipantsUpdate(from, [usR], "add")
+  }}
+  else {
+   return enviar("Só meu dono pode!")
+  }
+  
+  
+  
+}
 switch (comando)
 {
 case 'sla':
@@ -223,6 +245,12 @@ templateButtons: templateButtons
 }
 m7.sendMessage(from, templateMessage)
 break
+case 'ban':
+  chatMd(args, "remove")
+break
+case 'add':
+  chatMd(args, "add")
+break
 case 'pingg':
 case 'ping':
 const varping = speed();
@@ -244,7 +272,7 @@ case 'play':
   }
   
 const { url } = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
-m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {ptt: true}, );
+await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {quoted: info});
 enviar("ta ai fdp")
 break;
 case 'encurtar':
