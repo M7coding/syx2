@@ -127,7 +127,7 @@ const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
-if (!isGroup && isCmd){ console.log("comando no pv : \n")
+if (!isGroup && isCmd){ console.log("------\ncomando no pv : \n")
   console.log('nome:', pushname, "\n")
   console.log('comando:', comando, "\n")
 }
@@ -143,7 +143,7 @@ if (!isCmd && !isGroup){
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
 if (isCmd && isGroup) {
-  console.log("comando em grupo \n")
+  console.log("------\ncomando em grupo \n")
   console.log('nome do grupo:', groupName, '\n')
   console.log('mensagem:', budy, "\n")
 }
@@ -151,7 +151,7 @@ if (isCmd && isGroup) {
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
 if (!isCmd && isGroup){
-  console.log("comando em grupo \n")
+  console.log("--------\ncomando em grupo \n")
   console.log('nome do grupo:', groupName, '\n')
   console.log("nome do user: ", pushname, "\n")
   console.log('mensagem:', budy, "\n")
@@ -160,6 +160,49 @@ switch (comando)
 {
 case 'sla':
   return enviar("se você não sabe, imagine eu")
+break
+case 'menu':
+await m7.sendMessage(from, {text: "Aguarde..."})
+templateButtons = [
+
+
+{ quickReplyButton: { displayText: 'Menu dono', id: `${prefix}menudono`}},
+]
+var templateMessage = {
+  image: {url: './logo.png'},
+  caption: `
+┌───────────────
+│
+╠〢「 © syxBot 」
+│Ele demora um pouco no .play, não flodem comandos!
+Bot esta com a maioria dos comandos off, estou refazendo eles
+└───────────────
+┌───────────────
+╠〢「 PESQUISAR/BAIXAR 」
+│
+│💎${prefix}play
+│💎${prefix}playdocument
+│💎${prefix}play2
+│💎${prefix}ytsearch
+│
+└───────────────
+┌───────────────
+╠〢「 CMDS/TODOS 」
+│
+│💎${prefix}dono
+│💎${prefix}ping
+│💎${prefix}fazernick
+│💎${prefix}imgpralink
+│💎${prefix}menulist
+│💎${prefix}dono
+│💎${prefix}ban
+│💎${prefix}add
+│💎${prefix}encurtar
+│
+└───────────────`,
+footer: 'syxBot',
+templateButtons: templateButtons
+}
 break
 default :
 
