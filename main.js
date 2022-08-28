@@ -1,6 +1,7 @@
 const {
- default: makeWASocket,
+ default:makeWASocket,
   DisconnectReason,
+  downloadContentFromMessage,
   fetchLatestBaileysVersion,
   useSingleFileAuthState
  } = require('@adiwajshing/baileys');

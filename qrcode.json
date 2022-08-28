@@ -39,8 +39,8 @@
     },
     "registrationId": 234,
     "advSecretKey": "1faaQKQVIG9TUVOCdYq3TPVmFc0UhR9A/K89Rr/dhiA=",
-    "nextPreKeyId": 240,
-    "firstUnuploadedPreKeyId": 240,
+    "nextPreKeyId": 245,
+    "firstUnuploadedPreKeyId": 245,
     "serverHasPreKeys": true,
     "account": {
       "details": "CO7jyesGENzQpJgGGAE=",
@@ -1832,16 +1832,7 @@
         }
       },
       "223": null,
-      "224": {
-        "private": {
-          "type": "Buffer",
-          "data": "2Idn2ScTwHJVlC+gpPnFNkv7iXOocHJ8HnelL7wIO0s="
-        },
-        "public": {
-          "type": "Buffer",
-          "data": "++OTQ2ZCefV/ED9zVKD2E051R8JcV685av2bRSFrBRk="
-        }
-      },
+      "224": null,
       "225": {
         "private": {
           "type": "Buffer",
@@ -1954,6 +1945,29 @@
         "public": {
           "type": "Buffer",
           "data": "tQo6wRHsIpXwx53nczvcA30BUJ3FwTuvwyo4Ic3BMjQ="
+        }
+      },
+      "240": null,
+      "241": {
+        "private": {
+          "type": "Buffer",
+          "data": "+NUsyvd5GKq4g+edrJhnhdDxzyxzOU1hMn4senBuI1Y="
+        },
+        "public": {
+          "type": "Buffer",
+          "data": "PCE8FvPapd5MysKAIQXYdqc9PoTtiWOvRhKEfS2RslQ="
+        }
+      },
+      "242": null,
+      "243": null,
+      "244": {
+        "private": {
+          "type": "Buffer",
+          "data": "qD1KxsK/I3qfDjSGk5qFXb8naKjKjNU45X9E7nwT43g="
+        },
+        "public": {
+          "type": "Buffer",
+          "data": "1Xn1uvbUUbJ3bpF+RRvovFFBJn6n1LZl4JSrD7ONzGU="
         }
       }
     },
@@ -3055,7 +3069,7 @@
             "indexInfo": {
               "baseKey": "BUqzzoXLVQJ27uJE4tdIy/EaSZy1vdlqdSjLas8kwKED",
               "baseKeyType": 2,
-              "closed": -1,
+              "closed": 1661710132407,
               "used": 1661701911295,
               "created": 1661701911295,
               "remoteIdentityKey": "Bffy2XuuZrcR3kg4EGa0Rv/0knNJReEp1pIyTv4rUsV7"
@@ -3073,6 +3087,82 @@
                 "chainKey": {
                   "counter": 5,
                   "key": "43zEHA0kb7MmIBwQ115m8eF7TaD6SEarKCPAGRivE5o="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            }
+          },
+          "BZpz3B5DpF50v7I38xMdyLD1NwpHAIzdeYznLqUcXtRL": {
+            "registrationId": 1935790608,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BVKMZlVZnemP/ZFJqXRf4EH3JBoeai4y8lwdwNs5KqNR",
+                "privKey": "8F8wbiIQFGaUXMWvHdNuSMoUd573B8oT2fXIlvfuqlA="
+              },
+              "lastRemoteEphemeralKey": "BcqUKlLtZbsItL1Jx8WSTgZjc8x5qDANFCHipSMcjpgo",
+              "previousCounter": 0,
+              "rootKey": "LwFtwwO6LPA7pLU256HLtSZmEbgAvwjomukiRI70hSk="
+            },
+            "indexInfo": {
+              "baseKey": "BZpz3B5DpF50v7I38xMdyLD1NwpHAIzdeYznLqUcXtRL",
+              "baseKeyType": 2,
+              "closed": 1661710133582,
+              "used": 1661710132448,
+              "created": 1661710132448,
+              "remoteIdentityKey": "Bffy2XuuZrcR3kg4EGa0Rv/0knNJReEp1pIyTv4rUsV7"
+            },
+            "_chains": {
+              "BcqUKlLtZbsItL1Jx8WSTgZjc8x5qDANFCHipSMcjpgo": {
+                "chainKey": {
+                  "counter": 0,
+                  "key": "/BJLZWmJuw8SN/21cw+tbABUjnxUAaUZsmfiTXeBGeg="
+                },
+                "chainType": 2,
+                "messageKeys": {}
+              },
+              "BVKMZlVZnemP/ZFJqXRf4EH3JBoeai4y8lwdwNs5KqNR": {
+                "chainKey": {
+                  "counter": -1,
+                  "key": "VB22IWf8boUZJ/CPzh7JqTqxNvoz2Hz5WpAkoFWOPJo="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            }
+          },
+          "BZsjKdIbHif1C4ZdhOMU99iiwrQ0OKQg3Z6Fv/LGWuQm": {
+            "registrationId": 1935790608,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BczoR5+OGR/Oh1LFOhlZIzq1sXIUmFialCbKjpbm/WhM",
+                "privKey": "MCe5ustjSO3Lf3NpVBwY7kaYKCHnkUuF0z+54PXYV0k="
+              },
+              "lastRemoteEphemeralKey": "BWyUcjwtkDyZoT21RfxLsCkEheP8I8EnbZr35WiRBV5l",
+              "previousCounter": 0,
+              "rootKey": "5KJt9ifVy7FDZRqBkX1BPK00yflivDYGbB9bZFlHxP0="
+            },
+            "indexInfo": {
+              "baseKey": "BZsjKdIbHif1C4ZdhOMU99iiwrQ0OKQg3Z6Fv/LGWuQm",
+              "baseKeyType": 2,
+              "closed": -1,
+              "used": 1661710133621,
+              "created": 1661710133621,
+              "remoteIdentityKey": "Bffy2XuuZrcR3kg4EGa0Rv/0knNJReEp1pIyTv4rUsV7"
+            },
+            "_chains": {
+              "BWyUcjwtkDyZoT21RfxLsCkEheP8I8EnbZr35WiRBV5l": {
+                "chainKey": {
+                  "counter": 0,
+                  "key": "D9G85lJpEf6qB+LkWrP8e3r+9VAmh32yQ8zWPYiRk4w="
+                },
+                "chainType": 2,
+                "messageKeys": {}
+              },
+              "BczoR5+OGR/Oh1LFOhlZIzq1sXIUmFialCbKjpbm/WhM": {
+                "chainKey": {
+                  "counter": 3,
+                  "key": "NhrzeVJ8y8MMhEL0nvZzuAR3diYCEevQE+V47/AQHr0="
                 },
                 "chainType": 1,
                 "messageKeys": {}
@@ -3855,7 +3945,7 @@
             "indexInfo": {
               "baseKey": "BZ3NdPgdjWLUlU3sFt5/Rr9BAjsKzObPWn1Tflk1+gAn",
               "baseKeyType": 2,
-              "closed": -1,
+              "closed": 1661709895001,
               "used": 1661702734002,
               "created": 1661702283415,
               "remoteIdentityKey": "BRCUD87olRdYxVUBpDjqBBnN1njKszRKNsKLtvvhwZ5d"
@@ -3880,6 +3970,58 @@
                 "chainKey": {
                   "counter": 0,
                   "key": "rAnPQbIQMFwjdc3JkpVJSmpA2g9m3AdEMgTfdx2YRZ4="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            }
+          },
+          "Be8z8TKGsWHOw6mf6Dd40mIrC/3ig+OehI9LJBlc03ds": {
+            "registrationId": 1392425403,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BUHn6JvzUJVLl2DDocP+A+wV6sYBRyyzWaiHMlMRIGgF",
+                "privKey": "qMCYreHEpHxaEozHqA/RKKjucqjY/OpZUrZ/1qwGb3Q="
+              },
+              "lastRemoteEphemeralKey": "Bags78hkCg4oQJIHwTH06ymxlndo8+CRIy0kuIjZnwhF",
+              "previousCounter": 0,
+              "rootKey": "MXq+q454i+59INjltSc1EthU6T0vzQ0sX50JUVQDHy0="
+            },
+            "indexInfo": {
+              "baseKey": "Be8z8TKGsWHOw6mf6Dd40mIrC/3ig+OehI9LJBlc03ds",
+              "baseKeyType": 2,
+              "closed": -1,
+              "used": 1661710545590,
+              "created": 1661709895064,
+              "remoteIdentityKey": "BRCUD87olRdYxVUBpDjqBBnN1njKszRKNsKLtvvhwZ5d"
+            },
+            "_chains": {
+              "BcfcaJmzrV47+5A6COzsHZUKldFjmlXRcYlUknyFmJpx": {
+                "chainKey": {
+                  "counter": 1
+                },
+                "chainType": 2,
+                "messageKeys": {}
+              },
+              "BZEBZ80147cAmbZnVkYpDzNIdkU0QsTVJt5mTAanxRgM": {
+                "chainKey": {
+                  "counter": 1
+                },
+                "chainType": 2,
+                "messageKeys": {}
+              },
+              "Bags78hkCg4oQJIHwTH06ymxlndo8+CRIy0kuIjZnwhF": {
+                "chainKey": {
+                  "counter": 0,
+                  "key": "b9Vd60J2enhkXDoP+YbUnW1RPI40Yrz8DrzJtgdLIEA="
+                },
+                "chainType": 2,
+                "messageKeys": {}
+              },
+              "BUHn6JvzUJVLl2DDocP+A+wV6sYBRyyzWaiHMlMRIGgF": {
+                "chainKey": {
+                  "counter": 0,
+                  "key": "/j7rS38g+QVm6384oH8WPUFgEWIGWKmUSGYF6zNBQUY="
                 },
                 "chainType": 1,
                 "messageKeys": {}
@@ -17197,7 +17339,7 @@
             "indexInfo": {
               "baseKey": "BbYK782GrMGXe/227e5lU7h4DCHV/NlySUFB4u2G1CUO",
               "baseKeyType": 1,
-              "closed": -1,
+              "closed": 1661710122171,
               "used": 1661614993017,
               "created": 1661610547128,
               "remoteIdentityKey": "BbHojIFgXXInXh/T7Y4XE/Melf4GkFFG8AXAceiTeoE3"
@@ -17219,6 +17361,181 @@
                 "chainType": 1,
                 "messageKeys": {}
               }
+            }
+          },
+          "Bbdep9l4frCFPvbh+zOXzvIfE/rX2LA6gFjW3jmf2sEL": {
+            "registrationId": 1967943429,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BYw7Fl9VsEiPUZKeirfkpyFAS9n4kWnKejg1oq1tdFwm",
+                "privKey": "6JRo4qvWskdYjB4Ur0EIy0J5N6p90NR3XeUTr0gApWM="
+              },
+              "lastRemoteEphemeralKey": "BR1YXwxz6aWjEXSnUfZ/lOVsAoi1y/yjV8ZMtEb73PFW",
+              "previousCounter": 0,
+              "rootKey": "U55oDWXSY/ddiMrV6xUGNdnlMdnzloPw52Y+g5CUHbE="
+            },
+            "indexInfo": {
+              "baseKey": "Bbdep9l4frCFPvbh+zOXzvIfE/rX2LA6gFjW3jmf2sEL",
+              "baseKeyType": 1,
+              "closed": 1661710122982,
+              "used": 1661710122105,
+              "created": 1661710122105,
+              "remoteIdentityKey": "BcjQ5DH4DxqE7Up3WV803hjMR9ZwyCYjxHJYVQrl5ixi"
+            },
+            "_chains": {
+              "BYw7Fl9VsEiPUZKeirfkpyFAS9n4kWnKejg1oq1tdFwm": {
+                "chainKey": {
+                  "counter": -1,
+                  "key": "Iqpq2U88/EGrOp/QZWDC3/tXZrn7K2ENpKzHxI1QSWY="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            },
+            "pendingPreKey": {
+              "signedKeyId": 0,
+              "baseKey": "Bbdep9l4frCFPvbh+zOXzvIfE/rX2LA6gFjW3jmf2sEL",
+              "preKeyId": 5481696
+            }
+          },
+          "BXxHyyoBaTE4BhiF8b5XxLhzN+1N6aR6InneOGS4kg8y": {
+            "registrationId": 1967943429,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BeNPaN1CxCYaZzFHS/Th2aJXYasmFN0Cc68065G58OY5",
+                "privKey": "kMi6KhyNxUFRwMBuofQZEYe63pRaXubhqlaxYZOAq1k="
+              },
+              "lastRemoteEphemeralKey": "BR1YXwxz6aWjEXSnUfZ/lOVsAoi1y/yjV8ZMtEb73PFW",
+              "previousCounter": 0,
+              "rootKey": "ZC2xuvz5X+D9dNjvywEQzRYSfxYyTPINAiyGlVPUykc="
+            },
+            "indexInfo": {
+              "baseKey": "BXxHyyoBaTE4BhiF8b5XxLhzN+1N6aR6InneOGS4kg8y",
+              "baseKeyType": 1,
+              "closed": 1661710123805,
+              "used": 1661710122941,
+              "created": 1661710122941,
+              "remoteIdentityKey": "BcjQ5DH4DxqE7Up3WV803hjMR9ZwyCYjxHJYVQrl5ixi"
+            },
+            "_chains": {
+              "BeNPaN1CxCYaZzFHS/Th2aJXYasmFN0Cc68065G58OY5": {
+                "chainKey": {
+                  "counter": -1,
+                  "key": "ySxK40XHOjG8BbA3aGp4AjHJy5H3Uf1m2ICyczxMzGE="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            },
+            "pendingPreKey": {
+              "signedKeyId": 0,
+              "baseKey": "BXxHyyoBaTE4BhiF8b5XxLhzN+1N6aR6InneOGS4kg8y",
+              "preKeyId": 5481699
+            }
+          },
+          "BYXMEthbYLBx0PjoObNN1bG2k6U2gNYI15ZJ5lvHZjo3": {
+            "registrationId": 1967943429,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BU/U4Riq99BdvJVotKekXWzPODZAjbTcEWE2XIvDWu5m",
+                "privKey": "QJazEoH6C2srF1wpJ+SJkQ09iebuOc2SiOzakBwvQmI="
+              },
+              "lastRemoteEphemeralKey": "BR1YXwxz6aWjEXSnUfZ/lOVsAoi1y/yjV8ZMtEb73PFW",
+              "previousCounter": 0,
+              "rootKey": "JXjiuMASjrpBF6c9Q0rQRgNDCk3ThXr8n5153pVLk2U="
+            },
+            "indexInfo": {
+              "baseKey": "BYXMEthbYLBx0PjoObNN1bG2k6U2gNYI15ZJ5lvHZjo3",
+              "baseKeyType": 1,
+              "closed": 1661710124457,
+              "used": 1661710123758,
+              "created": 1661710123758,
+              "remoteIdentityKey": "BcjQ5DH4DxqE7Up3WV803hjMR9ZwyCYjxHJYVQrl5ixi"
+            },
+            "_chains": {
+              "BU/U4Riq99BdvJVotKekXWzPODZAjbTcEWE2XIvDWu5m": {
+                "chainKey": {
+                  "counter": -1,
+                  "key": "Cvfu+ygYryIEmqVyhzgtIkd2+cZmHQBOwJxypxP8SR8="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            },
+            "pendingPreKey": {
+              "signedKeyId": 0,
+              "baseKey": "BYXMEthbYLBx0PjoObNN1bG2k6U2gNYI15ZJ5lvHZjo3",
+              "preKeyId": 5481666
+            }
+          },
+          "BRntWcGa9UaKLcfYBN1F8eujGbnBa9P8JqApJGU9qSlk": {
+            "registrationId": 1967943429,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BRFia7HrhfkCX9rm/MmyxacuIN073JAmgQZkhK/A+PxS",
+                "privKey": "UMgk0BItnGFRT+0J9rjocX+c3yMyrbCTc4e/p4vulHQ="
+              },
+              "lastRemoteEphemeralKey": "BR1YXwxz6aWjEXSnUfZ/lOVsAoi1y/yjV8ZMtEb73PFW",
+              "previousCounter": 0,
+              "rootKey": "UT/fgTz3egCMDnkGjTy8H/EEoNilkRfVV4E4ORE72W8="
+            },
+            "indexInfo": {
+              "baseKey": "BRntWcGa9UaKLcfYBN1F8eujGbnBa9P8JqApJGU9qSlk",
+              "baseKeyType": 1,
+              "closed": 1661710125140,
+              "used": 1661710124442,
+              "created": 1661710124442,
+              "remoteIdentityKey": "BcjQ5DH4DxqE7Up3WV803hjMR9ZwyCYjxHJYVQrl5ixi"
+            },
+            "_chains": {
+              "BRFia7HrhfkCX9rm/MmyxacuIN073JAmgQZkhK/A+PxS": {
+                "chainKey": {
+                  "counter": -1,
+                  "key": "7Mp4Fz5rMPG2qY9Bd/OdB0+22sJSOXOU+z2NUR2uIFg="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            },
+            "pendingPreKey": {
+              "signedKeyId": 0,
+              "baseKey": "BRntWcGa9UaKLcfYBN1F8eujGbnBa9P8JqApJGU9qSlk",
+              "preKeyId": 5481722
+            }
+          },
+          "Bd9wu306SUyBSjX8J+c0J9KG9MbKE7IxpJtDrxcgQE8v": {
+            "registrationId": 1967943429,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "BVQ1DyyXdXz6gmNdpYo+Qvwf1ioJrnef0YSUCUjBa20H",
+                "privKey": "GOQ+bA4mCpqWRGqC/HN6GCaIqqZoaQ3Y41tzJbxG/EU="
+              },
+              "lastRemoteEphemeralKey": "BR1YXwxz6aWjEXSnUfZ/lOVsAoi1y/yjV8ZMtEb73PFW",
+              "previousCounter": 0,
+              "rootKey": "O3whP74j2vaV197kkI7REngDxssYWcyOi2JJHNUE8SY="
+            },
+            "indexInfo": {
+              "baseKey": "Bd9wu306SUyBSjX8J+c0J9KG9MbKE7IxpJtDrxcgQE8v",
+              "baseKeyType": 1,
+              "closed": -1,
+              "used": 1661710125116,
+              "created": 1661710125116,
+              "remoteIdentityKey": "BcjQ5DH4DxqE7Up3WV803hjMR9ZwyCYjxHJYVQrl5ixi"
+            },
+            "_chains": {
+              "BVQ1DyyXdXz6gmNdpYo+Qvwf1ioJrnef0YSUCUjBa20H": {
+                "chainKey": {
+                  "counter": -1,
+                  "key": "rJ8gL8ZJBT2hgUXABc4LSTnIy+ajECIwyCGqOovwiQ4="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
+            },
+            "pendingPreKey": {
+              "signedKeyId": 0,
+              "baseKey": "Bd9wu306SUyBSjX8J+c0J9KG9MbKE7IxpJtDrxcgQE8v",
+              "preKeyId": 5481572
             }
           }
         },
@@ -18966,7 +19283,7 @@
             "indexInfo": {
               "baseKey": "Ba4ClHlDkSkSJ4MhFLyU16v4WB13RxWg5wxHgLRiKhMR",
               "baseKeyType": 1,
-              "closed": -1,
+              "closed": 1661710313484,
               "used": 1661610548521,
               "created": 1661610548521,
               "remoteIdentityKey": "BVBWDtY6T2MFQWm6l7rv13VzCpnfOzPklUx96Ujwoilf"
@@ -18985,6 +19302,44 @@
               "signedKeyId": 0,
               "baseKey": "Ba4ClHlDkSkSJ4MhFLyU16v4WB13RxWg5wxHgLRiKhMR",
               "preKeyId": 1470925
+            }
+          },
+          "BfZ6zm+XSV0wESIEcrC9aV/Idg/r9BtcEAcUZlBEZDBs": {
+            "registrationId": 1981705757,
+            "currentRatchet": {
+              "ephemeralKeyPair": {
+                "pubKey": "Be/IXFGVu1II0nRGcPE109ysBsviGpNvRxH02qbECIMf",
+                "privKey": "KK9yo81SPTWflbOkAp2Pj8Mqi1qYOnidYYXe3V3/+10="
+              },
+              "lastRemoteEphemeralKey": "BRRHjLbdw5qff3BmQTInErkX5OJ6FqN1pudWz59z5/QI",
+              "previousCounter": 0,
+              "rootKey": "yjYFkHJjo+dgNTpsOpHDNs0Ff/yuyKlVaPGiHwwIXB0="
+            },
+            "indexInfo": {
+              "baseKey": "BfZ6zm+XSV0wESIEcrC9aV/Idg/r9BtcEAcUZlBEZDBs",
+              "baseKeyType": 2,
+              "closed": -1,
+              "used": 1661710313528,
+              "created": 1661710313528,
+              "remoteIdentityKey": "BVBWDtY6T2MFQWm6l7rv13VzCpnfOzPklUx96Ujwoilf"
+            },
+            "_chains": {
+              "BRRHjLbdw5qff3BmQTInErkX5OJ6FqN1pudWz59z5/QI": {
+                "chainKey": {
+                  "counter": 0,
+                  "key": "+mf+O6EllDOO7thYJo6NmIZ8EOlT2ZdwvT0hW1sQBB0="
+                },
+                "chainType": 2,
+                "messageKeys": {}
+              },
+              "Be/IXFGVu1II0nRGcPE109ysBsviGpNvRxH02qbECIMf": {
+                "chainKey": {
+                  "counter": -1,
+                  "key": "+ckcFg6uzDF37HH/T9y7wrPbB5JV7DnXM+Thl39h9DI="
+                },
+                "chainType": 1,
+                "messageKeys": {}
+              }
             }
           }
         },
@@ -27175,6 +27530,18 @@
             "public": "BVWBov6ANItL9Wec2rtZJgqUmcMqXCYGxECxxw5rjosO"
           }
         }
+      ],
+      "120363043766464648@g.us::553491253901::0": [
+        {
+          "senderKeyId": 1359449714,
+          "senderChainKey": {
+            "iteration": 4,
+            "seed": "Oo/iWoEg96XVde8FdYwEFD3XWObVRxg1Cvybngwh18I="
+          },
+          "senderSigningKey": {
+            "public": "BX7rcp79mpahPo+PRFsTgZdbnlLxr2vtH6YY/F8jWXJV"
+          }
+        }
       ]
     },
     "senderKeyMemory": {
@@ -27205,116 +27572,7 @@
         "5519998642971@s.whatsapp.net": true
       },
       "120363043832335017@g.us": null,
-      "120363025386097076@g.us": {
-        "5521983483885@s.whatsapp.net": true,
-        "559884381808@s.whatsapp.net": true,
-        "558188432231@s.whatsapp.net": true,
-        "558588906616@s.whatsapp.net": true,
-        "558294292631@s.whatsapp.net": true,
-        "558294292631:5@s.whatsapp.net": true,
-        "554484430179@s.whatsapp.net": true,
-        "559699677706@s.whatsapp.net": true,
-        "258843463213@s.whatsapp.net": true,
-        "351969080340@s.whatsapp.net": true,
-        "558192807172@s.whatsapp.net": true,
-        "555599863139@s.whatsapp.net": true,
-        "558194875269@s.whatsapp.net": true,
-        "557598842039@s.whatsapp.net": true,
-        "556286315476@s.whatsapp.net": true,
-        "5513996826812@s.whatsapp.net": true,
-        "5511948339165@s.whatsapp.net": true,
-        "556181666949@s.whatsapp.net": true,
-        "5519987797071@s.whatsapp.net": true,
-        "553171887323@s.whatsapp.net": true,
-        "558589580967@s.whatsapp.net": true,
-        "258850105684@s.whatsapp.net": true,
-        "553491253901@s.whatsapp.net": true,
-        "554298241249@s.whatsapp.net": true,
-        "558398105970@s.whatsapp.net": true,
-        "258857599576@s.whatsapp.net": true,
-        "5511970767476@s.whatsapp.net": true,
-        "5511970767476:20@s.whatsapp.net": true,
-        "972528290511@s.whatsapp.net": true,
-        "48699526508@s.whatsapp.net": true,
-        "558499248238@s.whatsapp.net": true,
-        "556195873157@s.whatsapp.net": true,
-        "558185723055@s.whatsapp.net": true,
-        "556284757491@s.whatsapp.net": true,
-        "556284757491:1@s.whatsapp.net": true,
-        "553298506354@s.whatsapp.net": true,
-        "553192952029@s.whatsapp.net": true,
-        "5511966551205@s.whatsapp.net": true,
-        "5512997091299@s.whatsapp.net": true,
-        "5517996168684@s.whatsapp.net": true,
-        "559887460347@s.whatsapp.net": true,
-        "258848349455@s.whatsapp.net": true,
-        "5511981458247@s.whatsapp.net": true,
-        "553388595177@s.whatsapp.net": true,
-        "258846974254@s.whatsapp.net": true,
-        "556696957023@s.whatsapp.net": true,
-        "557781479619@s.whatsapp.net": true,
-        "556292585806@s.whatsapp.net": true,
-        "554896089160@s.whatsapp.net": true,
-        "258872996927@s.whatsapp.net": true,
-        "559285929461@s.whatsapp.net": true,
-        "5511970766611@s.whatsapp.net": true,
-        "559188610948@s.whatsapp.net": true,
-        "558695807449@s.whatsapp.net": true,
-        "553597013145@s.whatsapp.net": true,
-        "5515996192766@s.whatsapp.net": true,
-        "558791797946@s.whatsapp.net": true,
-        "557381541312@s.whatsapp.net": true,
-        "5511952931355@s.whatsapp.net": true,
-        "558296539117@s.whatsapp.net": true,
-        "559885881155@s.whatsapp.net": true,
-        "553491286228@s.whatsapp.net": true,
-        "5513992099134@s.whatsapp.net": true,
-        "5519994392693@s.whatsapp.net": true,
-        "5511976552738@s.whatsapp.net": true,
-        "5521969711496@s.whatsapp.net": true,
-        "5511933848304@s.whatsapp.net": true,
-        "553298534557@s.whatsapp.net": true,
-        "554288705286@s.whatsapp.net": true,
-        "555194652814@s.whatsapp.net": true,
-        "555194652814:13@s.whatsapp.net": true,
-        "556392701207@s.whatsapp.net": true,
-        "559288173698@s.whatsapp.net": true,
-        "557581605546@s.whatsapp.net": true,
-        "557598370519@s.whatsapp.net": true,
-        "556496582250@s.whatsapp.net": true,
-        "15304473137@s.whatsapp.net": true,
-        "558585214736@s.whatsapp.net": true,
-        "559784392774@s.whatsapp.net": true,
-        "258857821035@s.whatsapp.net": true,
-        "556182571943@s.whatsapp.net": true,
-        "557583261576@s.whatsapp.net": true,
-        "5519993505454@s.whatsapp.net": true,
-        "559196111326@s.whatsapp.net": true,
-        "553493280200@s.whatsapp.net": true,
-        "556293462066@s.whatsapp.net": true,
-        "5511970777794@s.whatsapp.net": true,
-        "556192346284@s.whatsapp.net": true,
-        "16042653157@s.whatsapp.net": true,
-        "258846445427@s.whatsapp.net": true,
-        "556792333091@s.whatsapp.net": true,
-        "5521975101037@s.whatsapp.net": true,
-        "17094005973@s.whatsapp.net": true,
-        "5522992287903@s.whatsapp.net": true,
-        "556798003546@s.whatsapp.net": true,
-        "5521977078822@s.whatsapp.net": true,
-        "5521977078822:1@s.whatsapp.net": true,
-        "258846085064@s.whatsapp.net": true,
-        "557191226240@s.whatsapp.net": true,
-        "556992987085@s.whatsapp.net": true,
-        "50660026699@s.whatsapp.net": true,
-        "556193257504@s.whatsapp.net": true,
-        "558581253996@s.whatsapp.net": true,
-        "555499585103@s.whatsapp.net": true,
-        "5521994720780@s.whatsapp.net": true,
-        "554599281923@s.whatsapp.net": true,
-        "244947530677@s.whatsapp.net": true,
-        "553183680401@s.whatsapp.net": true
-      }
+      "120363025386097076@g.us": null
     }
   }
 }
