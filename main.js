@@ -408,7 +408,7 @@ case 'play':
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
   var foto21 = await getBuffer(`${thumb}`)
   templateButtons =[
-    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio`}},]
+    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`}},]
   templateMessage = {
     image: foto21,
     caption: `
@@ -423,7 +423,7 @@ case 'play':
   }
   //var slaManoGay = await getBuffer(`${thumb}`)
   await m7.sendMessage(from, templateMessage, {quoted: info})
-  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {quoted: info});
+ // await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {quoted: info});
 
 
 
