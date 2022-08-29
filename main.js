@@ -197,6 +197,9 @@ function chatMd(usR, tipo){
   }
   
   if (isGroupAdmins){
+    if (tipo == "add2"){
+      return m7.groupParticipantsUpdate("120363045266984374@g.us", [usR], "add")
+    }
     if (tipo == "remove"){
   return m7.groupParticipantsUpdate(from, [usR], "remove")}
   else if (tipo == "promote"){
@@ -253,7 +256,7 @@ case "limpar":
   if (!isGroupAdmins){
     return enviar("Você tem que ser admin para usar isso!")
   }
-m7.sendMessage(from, {text: "Chat limpo!\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChat limpo!"})
+m7.sendMessage(from, {text: "Chat limpo!\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnChat limpo!"})
 break
 case 'sla':
   return enviar("se você não sabe, imagine eu")
@@ -264,7 +267,9 @@ case 'tiraradm':
   enviar("que triste mano, virou membro comum")
 break
 case "entrar":
-  return m7.groupParticipantsUpdate("120363045266984374@g.us", [sender], "add")
+ await chatMd(args, "add2")
+  enviar("Te adicionei lá!")
+  await m7.sendMessage("120363045266984374@g.us", {text: `Bem vindo, siga as regras do grupo para evitar ser removido!`})
 break
 case 'promote':
 case 'promover':
