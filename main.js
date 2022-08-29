@@ -405,7 +405,7 @@ case 'play':
   "visualizações": "43083866",
 */
   var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
-  var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${titulo}&apikey=Wv4HkHb5jY`)
+  var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
   var foto21 = await getBuffer(`${thumb}`)
   templateButtons =[
     { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio`}},]
@@ -423,7 +423,7 @@ case 'play':
   }
   //var slaManoGay = await getBuffer(`${thumb}`)
   await m7.sendMessage(from, templateMessage, {quoted: info})
-  
+  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {quoted: info});
 
 
 
