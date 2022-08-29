@@ -98,7 +98,7 @@ const itsMe = m.sender == m7.user.id ? true : false
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.m || quoted).mimetype || ''
 const hora = moment.tz('America/Sao_Paulo').format('HH:mm:ss') 
-const data = moment.tz('America/Sao_Paulo').format('DD/MM/YY')
+const data2 = moment.tz('America/Sao_Paulo').format('DD/MM/YY')
 const sleep = async (ms) => {
 return new Promise(resolve => setTimeout(resolve, ms))}
 const args = body.trim().split(/ +/).slice(1)
@@ -355,7 +355,7 @@ const timestamp = speed();
 uptime = process.uptime()
 const latensi = speed() - timestamp
 uptime = process.uptime()
-m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : ${data}\n│ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
+m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : │ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
 break
 case 'id':
   var groupMembers2 = await groupMembers 
