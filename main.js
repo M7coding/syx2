@@ -399,9 +399,11 @@ case 'play':
   "visualizações": "43083866",
 */
   var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
-  var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
+  var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${titulo}&apikey=Wv4HkHb5jY`)
+  var foto21 = await getBuffer(`${thumb}`)
   templateMessage = {
-    text: `
+    image: foto21,
+    caption: `
     Titulo: ${titulo}
     Canal: ${canal}
     Data de upload: ${data}
