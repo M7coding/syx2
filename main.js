@@ -398,8 +398,8 @@ case 'play':
   "dados": "2021-03-26",
   "visualizações": "43083866",
 */
-  const {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
-  
+  var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
+  var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${resultado}&apikey=Wv4HkHb5jY`)
   templateMessage = {
     text: `
     Titulo: ${titulo}
@@ -413,7 +413,7 @@ case 'play':
   await m7.sendMessage(from, templateMessage, {quoted: info})
   
 
-await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {quoted: info});
+await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {quoted: info});
 
 break;
 //case de divulgação da X07
