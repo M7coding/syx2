@@ -385,6 +385,8 @@ enviar(resposta.erro)
 break
 case 'playaudio':
   await enviar("aguarde")
+  var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
+  var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${titulo}&apikey=Wv4HkHb5jY`)
   await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {quoted: info});
 break
 case 'play':
@@ -415,7 +417,9 @@ case 'play':
     Data de upload: ${data}
     Visualizações: ${views}
     
-    `
+    `,
+    footer: 'SyxBot',
+    templateButtons: templateButtons
   }
   //var slaManoGay = await getBuffer(`${thumb}`)
   await m7.sendMessage(from, templateMessage, {quoted: info})
