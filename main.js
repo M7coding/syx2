@@ -276,13 +276,14 @@ case 'promover':
 break
 case 'menu':
 await m7.sendMessage(from, {text: "Aguarde..."})
+var gay = await getBuffer(`https://ayu-team.herokuapp.com/api/canvas/menu?nome=${pushname}&perfil=https://ayu-team.herokuapp.com/img/ayu.jpg&fundo=https://telegra.ph/file/14c9a6ce9c4e3e43a8ee1.jpg&cor1=ffea00&cor2=ffea00&numero=${sender.split('@')[0]}&titulo=MENU&apikey=Wv4HkHb5jY`)
 templateButtons = [
 
 
 { quickReplyButton: { displayText: 'Menu dono', id: `${prefix}menudono`}},
 ]
 var templateMessage = {
-  image: {url: './logo.png'},
+  image: gay,
   caption: `
 ┌───────────────
 │
@@ -316,11 +317,13 @@ var templateMessage = {
 │🚩${prefix}add @
 │🚩${prefix}encurtar
 │🚩${prefix}limpar
+│🚩${prefix}pornhub
 │🚩${prefix}demote @
 │🚩${prefix}promote @
 │🚩${prefix}grupo f - fecha o grupo
 │🚩${prefix}grupo a - abre o grupo
-│🚩${prefix}banfake - use isso quando um número fake tiver entrado no grupo 
+│🚩${prefix}banfake - use isso quando um número
+|🚩fake tiver entrado no grupo 
 └───────────────`,
 footer: 'syxBot',
 templateButtons: templateButtons
@@ -334,6 +337,15 @@ break
 case 'add':
   chatMd(args, "add")
   enviar("Usuário adicionado!")
+break
+case "pornhub":
+  if (args.length == 0){
+    return enviar("Erro")
+  }
+  await enviar("aguarde")
+  var sla = await getBuffer(`https://ayu-team.herokuapp.com/api/textpro/pornhub?nome=${args}&nome2=hub&apikey=Wv4HkHb5jY`)
+  
+ return m7.sendMessage(from, {image: sla}, {quoted: info})
 break
 case 'pingg':
 case 'ping':
@@ -376,8 +388,31 @@ case 'play':
   if (args.lenght == 0){
    return enviar("cade o nome da música? n sou adivinho.")
   }
+ /* {
+  "status": verdadeiro,
+  "código": 200,
+  "criador": "Kratos",
+  "título": "VMZ - Plutão",
+  "thumb": "https://i.ytimg.com/vi/dTFDRIaQ1ck/maxresdefault.jpg",
+  "canal": "VmZ",
+  "dados": "2021-03-26",
+  "visualizações": "43083866",
+*/
+  const {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
   
-const { url } = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
+  templateMessage = {
+    text: `
+    Titulo: ${titulo}
+    Canal: ${canal}
+    Data de upload: ${data}
+    Visualizações: ${views}
+    to enviando o áudio 
+    `
+  }
+  //var slaManoGay = await getBuffer(`${thumb}`)
+  await m7.sendMessage(from, templateMessage, {quoted: info})
+  
+
 await m7.sendMessage(from, {audio: {url: url }, mimetype: 'audio/mp4'}, {quoted: info});
 
 break;
