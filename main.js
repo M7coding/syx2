@@ -188,9 +188,7 @@ const isQuotedLocation = type === "extendedTextMessage" && content.includes("loc
 const isQuotedProduct = type === "extendedTextMessage" && content.includes("productMessage")
 
 function chatMd(usR, tipo){
-  if (!isGroup){
-    return enviar("Não e um grupo")
-  }
+  
   usR = `${usR}@s.whatsapp.net`
   if (args.length == 0){
     return enviar("Função incompleta! Verifique o comando!")
@@ -314,8 +312,8 @@ var templateMessage = {
 │🚩${prefix}fazernick [TO SEM API]
 │🚩${prefix}imgpralink [EM DESENVOLVIMENTO]
 │🚩${prefix}dono
-│🚩${prefix}ban
-│🚩${prefix}add
+│🚩${prefix}ban @
+│🚩${prefix}add @
 │🚩${prefix}encurtar
 │🚩${prefix}limpar
 │🚩${prefix}demote @
