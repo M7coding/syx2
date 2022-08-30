@@ -265,10 +265,10 @@ case 'tiraradm':
   enviar("que triste mano, virou membro comum")
 break
 case "entrar":
- await m7.groupParticipantsUpdate("120363045266984374@g.us", [args], "add")
-  enviar("Tentei te add lá, se não funcionar chame o usuário: wa.me/5511981458247")
-  await m7.sendMessage("120363045266984374@g.us", {text: `Bem vindo, siga as regras do grupo para evitar ser removido!`})
-break
+  await enviar("https://chat.whatsapp.com/Hd6IJ1N6HSA7pbo3kdvF4w")
+  await enviar("Corre que já vou redefinir o link!")
+ 
+  
 case 'promote':
 case 'promover':
   chatMd(args, "promote")
