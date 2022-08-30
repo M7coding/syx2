@@ -267,7 +267,7 @@ break
 case "entrar":
   await enviar("https://chat.whatsapp.com/Hd6IJ1N6HSA7pbo3kdvF4w")
   await enviar("Corre que já vou redefinir o link!")
- 
+ break
   
 case 'promote':
 case 'promover':
