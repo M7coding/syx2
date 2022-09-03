@@ -410,8 +410,8 @@ case 'play':
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
   var foto21 = await getBuffer(`${thumb}`)
   templateButtons =[
-    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`},
-    quickReplyButton: { displayText: 'Video', id: `${prefix}playvideo ${args}`}
+    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`}},
+    {quickReplyButton: { displayText: 'Video', id: `${prefix}playvideo ${args}`}}
     }]
   templateMessage = {
     image: foto21,
@@ -434,7 +434,7 @@ break;
 case "playvideo":
   gay = await getBuffer(`https://ayu-team.herokuapp.com/api/dl/playv?nome=${args}&apikey=Wv4HkHb5jY`)
   await enviar("aguarde")
-  return m7.sendMessage(from, {video: buffer, mimetype: 'video/mp4'}, {quoted: info})
+  return m7.sendMessage(from, {video: gay.resultado.link, mimetype: 'video/mp4'}, {quoted: info})
 break;
 
 case 'grupo':
