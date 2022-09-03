@@ -412,7 +412,7 @@ case 'play':
   templateButtons =[
     { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`}},
     {quickReplyButton: { displayText: 'Video', id: `${prefix}playvideo ${args}`}}
-    }]
+    ]
   templateMessage = {
     image: foto21,
     caption: `
