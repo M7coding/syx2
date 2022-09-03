@@ -432,7 +432,7 @@ Visualizações: ${views}
 
 break;
 case "playvideo":
-  gay = await getBuffer(`https://ayu-team.herokuapp.com/api/dl/playv?nome=${args}&apikey=Wv4HkHb5jY`)
+  gay = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/playv?nome=${args}&apikey=Wv4HkHb5jY`)
   await enviar("aguarde")
   return m7.sendMessage(from, {video: gay.resultado.url, mimetype: 'video/mp4'}, {quoted: info})
 break;
