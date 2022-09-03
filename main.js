@@ -398,7 +398,7 @@ case 'playaudio':
   await enviar("aguarde")
   var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${titulo}&apikey=Wv4HkHb5jY`)
-  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {quoted: info});
+  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {ptt: true}, {quoted: info});
 break
 case 'play':
   await enviar("aguarde")
@@ -410,15 +410,16 @@ case 'play':
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
   var foto21 = await getBuffer(`${thumb}`)
   templateButtons =[
-    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`}},]
+    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`},
+    quickReplyButton: { displayText: 'Video', id: `${prefix}playvideo ${args}`}
+    }]
   templateMessage = {
     image: foto21,
     caption: `
-    Titulo: ${titulo}
-    Canal: ${canal}
-    Data de upload: ${data}
-    Visualizações: ${views}
-    
+Titulo: ${titulo}
+Canal: ${canal}
+Data de upload: ${data}
+Visualizações: ${views}
     `,
     footer: 'SyxBot',
     templateButtons: templateButtons
@@ -430,7 +431,11 @@ case 'play':
 
 
 break;
-
+case "playvideo":
+  gay = await getBuffer(`https://ayu-team.herokuapp.com/api/dl/playv?nome=${args}&apikey=Wv4HkHb5jY`)
+  await enviar("aguarde")
+  return m7.sendMessage(from, {video: buffer, mimetype: 'video/mp4'}, {quoted: info})
+break;
 
 case 'grupo':
   if (!isGroup){
@@ -453,7 +458,7 @@ case 'grupo':
     await m7.groupSettingUpdate(from, 'announcement')
     return enviar("Grupo fechado com sucesso!")
   }
-  
+  break
 case 'encurtar':
   if (args.length == 0){
     return enviar("cadê o link?")
