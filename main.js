@@ -1,3 +1,5 @@
+// syxbot by m7 
+// fiz no meu tempo livre ent ta uma bosta 
 const {
  default:makeWASocket,
   DisconnectReason,
@@ -11,12 +13,27 @@ const {
  const Pino = require('pino');
  const fs = require('fs');
  const axios = require("axios")
+ const cfonts = require("cfonts")
 const { state, saveState } = useSingleFileAuthState("./qrcode.json")
 const prefix = "."
-// 𝐂𝐨𝐧𝐬𝐨𝐥𝐞 / 𝐓𝐞𝐫𝐦𝐮𝐱
-const banner = "syx bot | power by m7"
+
+var cor = ['red','cyan','blue','white','green','yellow','magenta']
+cores = cor[Math.floor(Math.random() * cor.length)]
+
+var bases = ['BOT','SYX','SYXV2']
+nomes = bases[Math.floor(Math.random() * bases.length)]
+
+var fontes = ['simple','block','shade','pallet','slick']
+fonts = fontes[Math.floor(Math.random() * fontes.length)]
+
+
+const banner = cfonts.render((`${nomes}|Md`), {
+font : `${fonts}`,
+align: "center",
+colors: [`${cores}`,`green`]
+})
 async function startBot () {
-console.log(banner)
+console.log(banner.string)
 const m7 = makeWASocket({
 logger: pino({ level: "silent" }),printQRInTerminal: true,auth: state})
 m7.ev.on("connection.update", (update) => {
@@ -27,11 +44,10 @@ console.log("Conexão fechada devido a", lastDisconnect.error, "Tentando reconec
 if(shouldReconnect) {
 startBot()}
 } else if(connection === "open") {
-console.log("SyxBot On✓")
+console.log("Conectado")
 }})
 const { fetchJson } = require("./fetcher")
-const admins = JSON.parse(fs.readFileSync("./admins.json"))
-// 𝐋𝐢𝐧𝐠𝐮𝐚𝐠𝐞𝐧 𝐃𝐨 𝐁𝐨𝐭
+
 
 m7.ev.on("messages.upsert", async m => {
 try {
@@ -43,7 +59,7 @@ if (!info.message) return
 const from = info.key.remoteJid
 const type = Object.keys(info.message).find((key) => !['senderKeyDistributionMessage', 'messageContextInfo'].includes(key))
 
-// 🄰🄻🅃🄾 🅁🄴🅂🄿🄾🄽🄳🄴🅁 🄳🄾 🄱🄾🅃
+
 
 const body = (type === 'conversation' &&
 info.message.conversation.startsWith(prefix)) ?
@@ -108,7 +124,7 @@ const isCmd = body.startsWith(prefix)
 const enviar = (texto) => {
 m7.sendMessage(from, { text: texto }, {quoted: info})}
 
-// 𝐋𝐢𝐧𝐠𝐮𝐚𝐠𝐞𝐧 𝐃𝐞 𝐆𝐫𝐮𝐩𝐨
+
 // const isAntiLink =  antilink.includes(from)
 const botNumber = m7.user.jid
 const isGroup = info.key.remoteJid.endsWith("@g.us")
@@ -148,34 +164,25 @@ const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
-if (!isGroup && isCmd){ console.log("------\ncomando no pv : \n")
-  console.log('nome:', pushname, "\n")
-  console.log('comando:', comando, "\n")
+if (!isGroup && isCmd){ console.log(`\n -> COMANDO NO PV: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
 }
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
 if (!isCmd && !isGroup){
-  console.log("Mensagem no privado, mlk mo burro nem sabe que eu sou um bot \n")
-  console.log('nome:', pushname, '\n')
-  console.log('mensagem:', budy, "\n")
+  console.log(`\n -> MENSAGEM NO PV: NOME DO USUÁRIO:${pushname} MENSAGEM: ${budy} `)
 }
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
 if (isCmd && isGroup) {
-  console.log("------\ncomando em grupo \n")
-  console.log('nome do grupo:', groupName, '\n')
-  console.log('comando:', comando, "\n")
+  console.log(`\n -> COMANDO EM GRUPO: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
 }
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
 if (!isCmd && isGroup){
-  console.log("--------\n mensagem em grupo \n")
-  console.log('nome do grupo:', groupName, '\n')
-  console.log("nome do user: ", pushname, "\n")
-  console.log('mensagem:', budy, "\n")
+  console.log(`\n -> MENSAGEM EM GRUPO: NOME DO GRUPO:${groupName} MENSAGEM: ${budy} `)
 }
 const isQuotedMsg = type === "extendedTextMessage" && content.includes("textMessage")
 const isQuotedImage = type === "extendedTextMessage" && content.includes("imageMessage")
@@ -217,6 +224,7 @@ function chatMd(usR, tipo){
 }
 switch (comando)
 {
+  
 case 'banfake':
  var userUm = groupMembers[0]
  if (!userUm.split('@')[0].startsWith(55)){
@@ -264,11 +272,7 @@ case 'tiraradm':
   chatMd(args, "demote")
   enviar("que triste mano, virou membro comum")
 break
-case "entrar":
-  await enviar("https://chat.whatsapp.com/Hd6IJ1N6HSA7pbo3kdvF4w")
-  await enviar("Corre que já vou redefinir o link!")
- break
-  
+
 case 'promote':
 case 'promover':
   chatMd(args, "promote")
@@ -364,9 +368,16 @@ case 'id':
   m7.sendMessage(groupMembers[5]["id"], {text: "sla"})
   
 break
+case "menudono":
+  if (sender == "5511981458247@s.whatsapp.net"){return enviar("se e mt gay, n fez nada ainda aq")}
+  else {
+    return enviar("para de ser gay, so o meu dono pode fz isso!")
+  }
+break
 case 'dono':
 enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
 break
+//saporra n ta funcionando 
 case 'imgpralink':    
 try {
 if (isQuotedImage) {
@@ -394,16 +405,7 @@ case 'play':
   if (args.lenght == 0){
    return enviar("cade o nome da música? n sou adivinho.")
   }
- /* {
-  "status": verdadeiro,
-  "código": 200,
-  "criador": "Kratos",
-  "título": "VMZ - Plutão",
-  "thumb": "https://i.ytimg.com/vi/dTFDRIaQ1ck/maxresdefault.jpg",
-  "canal": "VmZ",
-  "dados": "2021-03-26",
-  "visualizações": "43083866",
-*/
+
   var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
   var foto21 = await getBuffer(`${thumb}`)
@@ -421,32 +423,15 @@ case 'play':
     footer: 'SyxBot',
     templateButtons: templateButtons
   }
-  //var slaManoGay = await getBuffer(`${thumb}`)
+  
   await m7.sendMessage(from, templateMessage, {quoted: info})
  // await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {quoted: info});
 
 
 
 break;
-//case de divulgação da X07
-case 'divulgar':
-  if (args.lenght == 0){
-    return enviar("Manda o número kct")
-  }
-  templateButtons = [
 
 
-{ quickReplyButton: { displayText: 'Quero entrar', id: `${prefix}entrar`}},
-]
-var templateMessage = {
-text: `iae mn, quer entrar numa team privada de métodos, programação e bots? acabamos de abrir uma vaga aproveita!`,
-footer: 'X07 - PRIVATE - X07',
-templateButtons: templateButtons
-}
-  await enviar("Ja divulguei mano")
- await m7.sendMessage(`${args}@s.whatsapp.net`, templateMessage)
- console.log(from)
-break
 case 'grupo':
   if (!isGroup){
     return enviar("Não e um grupo!")
