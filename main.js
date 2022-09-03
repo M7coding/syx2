@@ -432,9 +432,11 @@ Visualizações: ${views}
 
 break;
 case "playvideo":
-  gay = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/playv?nome=${args}&apikey=Wv4HkHb5jY`)
+  
   await enviar("aguarde")
-  return m7.sendMessage(from, {video: gay.resultado.url, mimetype: 'video/mp4'}, {quoted: info})
+  var slagay = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/playv?nome=${args}&apikey=Wv4HkHb5jY`)
+  var slaVideo = getBuffer(slagay.resultado.url)
+  return m7.sendMessage(from, {video: slaVideo, mimetype: 'video/mp4'}, {quoted: info})
 break;
 
 case 'grupo':
