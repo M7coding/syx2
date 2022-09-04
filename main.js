@@ -397,7 +397,7 @@ case "menudono":
   }
 break
 case 'dono':
-m7.sendMessage(from, {image: "./logo.png"}, {caption: 
+m7.sendMessage(from, {image: {url:"./logo.png"}}, {caption: 
 `
 Username: M7
 Github: https://github.com/M7coding
@@ -425,7 +425,7 @@ case 'playaudio':
   await enviar("aguarde")
   var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${titulo}&apikey=Wv4HkHb5jY`)
-  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {ptt: true}, {quoted: selo});
+  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {ptt: true}, {quoted: selo2});
 break
 case 'play':
   await enviar("aguarde")
