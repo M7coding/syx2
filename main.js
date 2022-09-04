@@ -371,7 +371,7 @@ case "pornhub":
   await enviar("aguarde")
   var sla = await getBuffer(`https://ayu-team.herokuapp.com/api/textpro/pornhub?nome=${args}&nome2=hub&apikey=Wv4HkHb5jY`)
   
- return m7.sendMessage(from, {image: sla}, {quoted: info})
+ return m7.sendMessage(from, {image: sla}, {quoted: selo2})
 break
 case 'pingg':
 case 'ping':
@@ -402,7 +402,7 @@ m7.sendMessage(from, {image: "./logo.png"}, {caption:
 Username: M7
 Github: https://github.com/M7coding
 Repositório do SyxBot: https://github.com/M7coding/syx2
-`}, {quoted: selo2})
+`}, {quoted: selo})
 break
 //saporra n ta funcionando 
 case 'imgpralink':    
