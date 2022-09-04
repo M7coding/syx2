@@ -243,7 +243,7 @@ console.log(err)
 })
 const selo = {key: {fromMe: false,participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})},message: { "extendedTextMessage": {"text": `SyxBot`,"title": "M7 lindo" }}}
   
-  const selo2 = { key: { participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `6283136505591-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'dplayName': `${pushname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;M7,;;;\nFN:M7,\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': {url: `./logo.png`},sendEphemeral: true}}}
+  const selo2 = { key: { participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `6283136505591-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `${pushname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;M7,;;;\nFN:M7,\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': {url: `./logo.png`},sendEphemeral: true}}}
 switch (comando)
 {
   
@@ -257,11 +257,11 @@ case 'banfake':
    return enviar("Nenhum fake que entrou agora para eu remover!")
  }
 case "marcar":
-  if (!Group){
+  if (!isGroup){
     return enviar("Não e um grupo")
   }
   
-  if (!GroupAdmins){
+  if (!isGroupAdmins){
     return enviar("Somente os adms podem usar so!")
   }
   members_id = []
@@ -278,11 +278,11 @@ break
   
 case "clear":
 case "limpar":
-  if (!Group) {
+  if (!isGroup) {
     return enviar("Não e um grupo!")
   }
-  if (!GroupAdmins){
-    return enviar("Você tem que ser admin para usar so!")
+  if (!isGroupAdmins){
+    return enviar("Você tem que ser admin para usar isso!")
   }
 m7.sendMessage(from, {text: "Chat limpo!\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChat limpo!"})
 break
@@ -381,7 +381,7 @@ const timestamp = speed();
 uptime = process.uptime()
 const latensi = speed() - timestamp
 uptime = process.uptime()
-m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : │ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { dplayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
+m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : │ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
 break
 case 'id':
   var groupMembers2 = await groupMembers 
@@ -407,7 +407,7 @@ break
 //saporra n ta funcionando 
 case 'imgpralink':    
 try {
-if (QuotedImage) {
+if (isQuotedImage) {
 enviar("aguarde")
 boij = QuotedImage || QuotedVideo ? JSON.parse(JSON.stringify(info).replace("quotedM","m")).message.extendedTextMessage.contextInfo.message.imageMessage : info
 owgi = await getFileBuffer(boij, "image")
@@ -447,6 +447,7 @@ Titulo: ${titulo}
 Canal: ${canal}
 Data de upload: ${data}
 Vualizações: ${views}
+USE .playaudio ${args}
     `,
     footer: 'SyxBot',
     templateButtons: templateButtons
@@ -467,10 +468,10 @@ case "playvideo":
 break;
 
 case 'grupo':
-  if (!Group){
+  if (!isGroup){
     return enviar("Não e um grupo!")
   }
-  if (!GroupAdmins){
+  if (!isGroupAdmins){
     return enviar("Você não e um admintrador!")
   }
   // if (!BotGroupAdmins){
@@ -505,7 +506,7 @@ default :
 
 if (budy == `${prefix}${comando}`){
   
-m7.sendMessage(from, {text: `╭─────────────\n│\n││• Comando: Não Exte\n││• Data: ${data}\n││• Hora: ${hora}\n││• Use .menu\n│\n╰─────────────`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { dplayText: '━━━━━━━━━━━━━━━', id: `${prefix}menu`}}, ]})
+m7.sendMessage(from, {text: `╭─────────────\n│\n││• Comando: Não Exte\n││• Data: ${data}\n││• Hora: ${hora}\n││• Use .menu\n│\n╰─────────────`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: '━━━━━━━━━━━━━━━', id: `${prefix}menu`}}, ]})
 }
 }
 }
