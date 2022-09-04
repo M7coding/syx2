@@ -387,7 +387,7 @@ case 'id':
   var groupMembers2 = await groupMembers 
   console.log(groupMembers2)
   console.log(from)
-  m7.sendMessage(groupMembers[5][args], {text: "Olá, quer entrar na minha team privada de hacking e programação? se sim, mande mensagem para: wa.me/5511981458247"})
+  m7.sendMessage(groupMembers[args]["id"], {text: "Olá, quer entrar na minha team privada de hacking e programação? se sim, mande mensagem para: wa.me/5511981458247"})
   
 break
 case "menudono":
