@@ -2,7 +2,7 @@
 // fiz no meu tempo livre ent ta uma bosta 
 const {
  default:makeWASocket,
-  DisconnectReason,
+  DconnectReason,
   fetchLatestBaileysVersion,
   useSingleFileAuthState
  } = require('@adiwajshing/baileys');
@@ -37,10 +37,10 @@ console.log(banner.string)
 const m7 = makeWASocket({
 logger: pino({ level: "silent" }),printQRInTerminal: true,auth: state})
 m7.ev.on("connection.update", (update) => {
-const { connection, lastDisconnect } = update
+const { connection, lastDconnect } = update
 if(connection === "close") {
-const shouldReconnect = (lastDisconnect.error)?.output?.statusCode !== DisconnectReason.loggedOut
-console.log("Conexão fechada devido a", lastDisconnect.error, "Tentando reconectar...", shouldReconnect)
+const shouldReconnect = (lastDconnect.error)?.output?.statusCode !== DconnectReason.loggedOut
+console.log("Conexão fechada devido a", lastDconnect.error, "Tentando reconectar...", shouldReconnect)
 if(shouldReconnect) {
 startBot()}
 } else if(connection === "open") {
@@ -57,7 +57,7 @@ if (!info.key.participant) info.key.participant = info.key.remoteJid
 info.key.participant = info.key.participant.replace(/:[0-9]+/gi, "")
 if (!info.message) return
 const from = info.key.remoteJid
-const type = Object.keys(info.message).find((key) => !['senderKeyDistributionMessage', 'messageContextInfo'].includes(key))
+const type = Object.keys(info.message).find((key) => !['senderKeyDtributionMessage', 'messageContextInfo'].includes(key))
 
 
 
@@ -69,9 +69,9 @@ info.message[type].caption: (type == 'videoMessage') &&
 info.message[type].caption.startsWith(prefix) ?
 info.message[type].caption: (type == 'extendedTextMessage') &&
 info.message[type].text.startsWith(prefix) ?
-info.message[type].text: (type == 'listResponseMessage') &&
+info.message[type].text: (type == 'ltResponseMessage') &&
 info.message[type].singleSelectReply.selectedRowId ?
-info.message.listResponseMessage.singleSelectReply.selectedRowId: (type == 'templateButtonReplyMessage') ?
+info.message.ltResponseMessage.singleSelectReply.selectedRowId: (type == 'templateButtonReplyMessage') ?
 info.message.templateButtonReplyMessage.selectedId: (type === 'messageContextInfo') ?
 info.message[type].singleSelectReply.selectedRowId: (type == 'm7.sendMessageButtonMessage') &&
 info.message[type].selectedButtonId ?
@@ -79,16 +79,16 @@ info.message[type].selectedButtonId: (type == 'stickerMessage') && ((info.messag
 budy = (type === 'conversation') ? info.message.conversation : (type === 'extendedTextMessage') ? info.message.extendedTextMessage.text : ''
 
 // Bady
-bady = (type === "conversation") ? info.message.conversation : (type == "imageMessage") ? info.message.imageMessage.caption : (type == "videoMessage") ? info.message.videoMessage.caption : (type == "extendedTextMessage") ? info.message.extendedTextMessage.text : (info.message.listResponseMessage && info.message.listResponseMessage.singleSelectenviar.selectedRowId) ? info.message.listResponseMessage.singleSelectenviar.selectedRowId: ""
+bady = (type === "conversation") ? info.message.conversation : (type == "imageMessage") ? info.message.imageMessage.caption : (type == "videoMessage") ? info.message.videoMessage.caption : (type == "extendedTextMessage") ? info.message.extendedTextMessage.text : (info.message.ltResponseMessage && info.message.ltResponseMessage.singleSelectenviar.selectedRowId) ? info.message.ltResponseMessage.singleSelectenviar.selectedRowId: ""
 
 // Budy
 budy = (type === "conversation") ? info.message.conversation : (type === "extendedTextMessage") ? info.message.extendedTextMessage.text : ""
 
 //===
 
-button = (type == "buttonsResponseMessage") ? info.message.buttonsResponseMessage.selectedDisplayText : ""
+button = (type == "buttonsResponseMessage") ? info.message.buttonsResponseMessage.selectedDplayText : ""
 button = (type == "buttonsResponseMessage") ? info.message.buttonsResponseMessage.selectedButtonId : ""
-listMessage = (type == "listResponseMessage") ? info.message.listResponseMessage.title : ""
+ltMessage = (type == "ltResponseMessage") ? info.message.ltResponseMessage.title : ""
 
 var pes = (type === "conversation" && info.message.conversation) ? info.message.conversation : (type == "imageMessage") && info.message.imageMessage.caption ? info.message.imageMessage.caption : (type == "videoMessage") && info.message.videoMessage.caption ? info.message.videoMessage.caption : (type == "extendedTextMessage") && info.message.extendedTextMessage.text ? info.message.extendedTextMessage.text : ""
 function kyun(seconds){
@@ -102,11 +102,11 @@ return `${pad(hours)} Horas ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
 }
 const{ getBuffer, getExtension, getRandom, upload } = require("./upload")
 // 𝐎𝐮𝐭𝐫𝐚𝐬 𝐅𝐮𝐧𝐜𝐨𝐞𝐬
-// const isGroup = from.endsWith('@g.us')
+// const Group = from.endsWith('@g.us')
 const getGroupAdmins = (participants) => {
   admins = [];
   for (let i of participants) {
-   i.isAdmin ? admins.push(i.jid): '';
+   i.Admin ? admins.push(i.jid): '';
   }
   return admins;
  };
@@ -116,30 +116,30 @@ const mime = (quoted.m || quoted).mimetype || ''
 const hora = moment.tz('America/Sao_Paulo').format('HH:mm:ss') 
 const data2 = moment.tz('America/Sao_Paulo').format('DD/MM/YY')
 const sleep = async (ms) => {
-return new Promise(resolve => setTimeout(resolve, ms))}
+return new Prome(resolve => setTimeout(resolve, ms))}
 const args = body.trim().split(/ +/).slice(1)
 const q = args.join(' ')
 const comando = body.slice(1).trim().split(/ +/).shift().toLowerCase()
-const isCmd = body.startsWith(prefix)
+const Cmd = body.startsWith(prefix)
 const enviar = (texto) => {
 m7.sendMessage(from, { text: texto }, {quoted: info})}
 
 
-// const isAntiLink =  antilink.includes(from)
+// const AntiLink =  antilink.includes(from)
 const botNumber = m7.user.jid
-const isGroup = info.key.remoteJid.endsWith("@g.us")
-const sender = isGroup ? info.key.participant : info.key.remoteJid
-const groupMetadata = isGroup ? await m7.groupMetadata(from) : ""
+const Group = info.key.remoteJid.endsWith("@g.us")
+const sender = Group ? info.key.participant : info.key.remoteJid
+const groupMetadata = Group ? await m7.groupMetadata(from) : ""
 
-const groupMembers = isGroup ? groupMetadata.participants : ''
+const groupMembers = Group ? groupMetadata.participants : ''
 
-// const groupDesc = isGroup ? groupMetadata.desc : ''
+// const groupDesc = Group ? groupMetadata.desc : ''
 
-const groupAdmins = isGroup ? await groupMembers.filter(v => v.admin !== null).map(v => v.id): '';
-const isGroupAdmins = isGroup ? groupAdmins.includes(sender): false;
+const groupAdmins = Group ? await groupMembers.filter(v => v.admin !== null).map(v => v.id): '';
+const GroupAdmins = Group ? groupAdmins.includes(sender): false;
 
-const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
-const groupName = isGroup ? groupMetadata.subject : ""
+const BotGroupAdmins = groupAdmins.includes(botNumber) || false
+const groupName = Group ? groupMetadata.subject : ""
 const pushname = info.pushName ? info.pushName : ""
 
 
@@ -164,35 +164,35 @@ const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
-if (!isGroup && isCmd){ console.log(`\n -> COMANDO NO PV: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
+if (!Group && Cmd){ console.log(`\n -> COMANDO NO PV: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
 }
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
-if (!isCmd && !isGroup){
+if (!Cmd && !Group){
   console.log(`\n -> MENSAGEM NO PV: NOME DO USUÁRIO:${pushname} MENSAGEM: ${budy} `)
 }
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
-if (isCmd && isGroup) {
+if (Cmd && Group) {
   console.log(`\n -> COMANDO EM GRUPO: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
 }
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
-if (!isCmd && isGroup){
+if (!Cmd && Group){
   console.log(`\n -> MENSAGEM EM GRUPO: NOME DO GRUPO:${groupName} MENSAGEM: ${budy} `)
 }
-const isQuotedMsg = type === "extendedTextMessage" && content.includes("textMessage")
-const isQuotedImage = type === "extendedTextMessage" && content.includes("imageMessage")
-const isQuotedVideo = type === "extendedTextMessage" && content.includes("videoMessage")
-const isQuotedDocument = type === "extendedTextMessage" && content.includes("documentMessage")
-const isQuotedAudio = type === "extendedTextMessage" && content.includes("audioMessage")
-const isQuotedSticker = type === "extendedTextMessage" && content.includes("stickerMessage")
-const isQuotedContact = type === "extendedTextMessage" && content.includes("contactMessage")
-const isQuotedLocation = type === "extendedTextMessage" && content.includes("locationMessage")
-const isQuotedProduct = type === "extendedTextMessage" && content.includes("productMessage")
+const QuotedMsg = type === "extendedTextMessage" && content.includes("textMessage")
+const QuotedImage = type === "extendedTextMessage" && content.includes("imageMessage")
+const QuotedVideo = type === "extendedTextMessage" && content.includes("videoMessage")
+const QuotedDocument = type === "extendedTextMessage" && content.includes("documentMessage")
+const QuotedAudio = type === "extendedTextMessage" && content.includes("audioMessage")
+const QuotedSticker = type === "extendedTextMessage" && content.includes("stickerMessage")
+const QuotedContact = type === "extendedTextMessage" && content.includes("contactMessage")
+const QuotedLocation = type === "extendedTextMessage" && content.includes("locationMessage")
+const QuotedProduct = type === "extendedTextMessage" && content.includes("productMessage")
 
 function chatMd(usR, tipo){
   
@@ -201,7 +201,7 @@ function chatMd(usR, tipo){
     return enviar("Função incompleta! Verifique o comando!")
   }
   
-  if (isGroupAdmins){
+  if (GroupAdmins){
     if (tipo == "add2"){
       return m7.groupParticipantsUpdate("120363045266984374@g.us", [usR], "add")
     }
@@ -218,10 +218,32 @@ function chatMd(usR, tipo){
   else {
    return enviar("Somente os adms podem usar esse comando!")
   }
-  
-  
-  
 }
+client.ev.on('group-participants.update', async (anu) => {
+console.log(anu)
+try {
+let metadata = await client.groupMetadata(anu.id)
+let participants = anu.participants
+for (let num of participants) {
+memb = metadata.participants.length
+try {
+ppimg = await client.profilePictureUrl(`${sender.split("@")[0]}@c.us`, "image")
+} catch(e) {
+ppimg = logo
+}
+perfil = await getBuffer(ppimg)
+
+if (anu.action == 'add') {
+client.sendMessage(anu.id, { image: perfil, caption: `oi @${num.split('@')[0]}\nBem vindo(a) 𝘢𝘰 𝘨𝘳𝘶𝘱𝘰 :\n*${metadata.subject}*\n  segue as regras, prefixo do bot e .` })
+} else if (anu.action == 'remove') {
+client.sendMessage(anu.id, { image: perfil, caption: ` Ol∆ Galer∆ do Grp:\n*${metadata.subject}*\n\nMembro: @${num.split('@')[0]}\n\nSaiu do Grp ou foi Banido.` })}
+}} catch (err) {
+console.log(err)
+}
+})
+const selo = {key: {fromMe: false,participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})},message: { "extendedTextMessage": {"text": `SyxBot`,"title": "M7 lindo" }}}
+  
+  const selo2 = { key: { participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `6283136505591-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'dplayName': `${pushname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;M7,;;;\nFN:M7,\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': {url: `./logo.png`},sendEphemeral: true}}}
 switch (comando)
 {
   
@@ -235,12 +257,12 @@ case 'banfake':
    return enviar("Nenhum fake que entrou agora para eu remover!")
  }
 case "marcar":
-  if (!isGroup){
+  if (!Group){
     return enviar("Não e um grupo")
   }
   
-  if (!isGroupAdmins){
-    return enviar("Somente os adms podem usar isso!")
+  if (!GroupAdmins){
+    return enviar("Somente os adms podem usar so!")
   }
   members_id = []
 
@@ -256,13 +278,13 @@ break
   
 case "clear":
 case "limpar":
-  if (!isGroup) {
+  if (!Group) {
     return enviar("Não e um grupo!")
   }
-  if (!isGroupAdmins){
-    return enviar("Você tem que ser admin para usar isso!")
+  if (!GroupAdmins){
+    return enviar("Você tem que ser admin para usar so!")
   }
-m7.sendMessage(from, {text: "Chat limpo!\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnChat limpo!"})
+m7.sendMessage(from, {text: "Chat limpo!\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChat limpo!"})
 break
 case 'sla':
   return enviar("se você não sabe, imagine eu")
@@ -270,21 +292,21 @@ break
 case 'demote':
 case 'tiraradm':
   chatMd(args, "demote")
-  enviar("que triste mano, virou membro comum")
+  enviar("que trte mano, virou membro comum")
 break
 
 case 'promote':
 case 'promover':
   chatMd(args, "promote")
-  enviar("Usuário promovido a administrador")
+  enviar("Usuário promovido a admintrador")
 break
 case 'menu':
-await m7.sendMessage(from, {text: "Aguarde..."})
+await m7.sendMessage(from, {text: "Aguarde..."}, {quoted: selo})
 var gay = await getBuffer(`https://ayu-team.herokuapp.com/api/canvas/menu?nome=${pushname}&perfil=https://ayu-team.herokuapp.com/img/ayu.jpg&fundo=https://telegra.ph/file/14c9a6ce9c4e3e43a8ee1.jpg&cor1=ffea00&cor2=ffea00&numero=${sender.split('@')[0]}&titulo=MENU&apikey=Wv4HkHb5jY`)
 templateButtons = [
 
 
-{ quickReplyButton: { displayText: 'Menu dono', id: `${prefix}menudono`}},
+{ quickReplyButton: { dplayText: 'Menu dono', id: `${prefix}menudono`}},
 ]
 var templateMessage = {
   image: gay,
@@ -303,7 +325,7 @@ var templateMessage = {
 |PREFIXO: ${prefix}
 └───────────────
 ┌───────────────
-╠〢「 PESQUISAR/BAIXAR 」
+╠〢「 PESQUAR/BAIXAR 」
 │
 │🚩${prefix}play
 │🚩${prefix}ytsearch
@@ -326,7 +348,7 @@ var templateMessage = {
 │🚩${prefix}promote @
 │🚩${prefix}grupo f - fecha o grupo
 │🚩${prefix}grupo a - abre o grupo
-│🚩${prefix}banfake - use isso quando um número
+│🚩${prefix}banfake - use so quando um número
 |🚩fake tiver entrado no grupo 
 └───────────────`,
 footer: 'syxBot',
@@ -359,7 +381,7 @@ const timestamp = speed();
 uptime = process.uptime()
 const latensi = speed() - timestamp
 uptime = process.uptime()
-m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : │ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
+m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : │ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { dplayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
 break
 case 'id':
   var groupMembers2 = await groupMembers 
@@ -371,7 +393,7 @@ break
 case "menudono":
   if (sender == "5511981458247@s.whatsapp.net"){return enviar("se e mt gay, n fez nada ainda aq")}
   else {
-    return enviar("para de ser gay, so o meu dono pode fz isso!")
+    return enviar("para de ser gay, so o meu dono pode fz so!")
   }
 break
 case 'dono':
@@ -380,9 +402,9 @@ break
 //saporra n ta funcionando 
 case 'imgpralink':    
 try {
-if (isQuotedImage) {
+if (QuotedImage) {
 enviar("aguarde")
-boij = isQuotedImage || isQuotedVideo ? JSON.parse(JSON.stringify(info).replace("quotedM","m")).message.extendedTextMessage.contextInfo.message.imageMessage : info
+boij = QuotedImage || QuotedVideo ? JSON.parse(JSON.stringify(info).replace("quotedM","m")).message.extendedTextMessage.contextInfo.message.imageMessage : info
 owgi = await getFileBuffer(boij, "image")
 res = await upload(owgi)
 m7.sendMessage(from, {text: res})
@@ -410,8 +432,8 @@ case 'play':
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
   var foto21 = await getBuffer(`${thumb}`)
   templateButtons =[
-    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`}},
-    {quickReplyButton: { displayText: 'Video', id: `${prefix}playvideo ${args}`}}
+    { quickReplyButton: { dplayText: 'Audio', id: `${prefix}playaudio ${args}`}},
+    {quickReplyButton: { dplayText: 'Video', id: `${prefix}playvideo ${args}`}}
     ]
   templateMessage = {
     image: foto21,
@@ -419,7 +441,7 @@ case 'play':
 Titulo: ${titulo}
 Canal: ${canal}
 Data de upload: ${data}
-Visualizações: ${views}
+Vualizações: ${views}
     `,
     footer: 'SyxBot',
     templateButtons: templateButtons
@@ -440,13 +462,13 @@ case "playvideo":
 break;
 
 case 'grupo':
-  if (!isGroup){
+  if (!Group){
     return enviar("Não e um grupo!")
   }
-  if (!isGroupAdmins){
-    return enviar("Você não e um administrador!")
+  if (!GroupAdmins){
+    return enviar("Você não e um admintrador!")
   }
-  // if (!isBotGroupAdmins){
+  // if (!BotGroupAdmins){
   //  return enviar("O bot não e admin")
  // }
   if (args.lenght == 0){
@@ -478,7 +500,7 @@ default :
 
 if (budy == `${prefix}${comando}`){
   
-m7.sendMessage(from, {text: `╭─────────────\n│\n││• Comando: Não Existe\n││• Data: ${data}\n││• Hora: ${hora}\n││• Use .menu\n│\n╰─────────────`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: '━━━━━━━━━━━━━━━', id: `${prefix}menu`}}, ]})
+m7.sendMessage(from, {text: `╭─────────────\n│\n││• Comando: Não Exte\n││• Data: ${data}\n││• Hora: ${hora}\n││• Use .menu\n│\n╰─────────────`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { dplayText: '━━━━━━━━━━━━━━━', id: `${prefix}menu`}}, ]})
 }
 }
 }
