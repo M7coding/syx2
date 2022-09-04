@@ -387,7 +387,7 @@ case 'id':
   var groupMembers2 = await groupMembers 
   console.log(groupMembers2)
   console.log(from)
-  m7.sendMessage(groupMembers[5]["id"], {text: "sla"})
+  m7.sendMessage(groupMembers[5][args], {text: "Olá, quer entrar na minha team privada de hacking e programação? se sim, mande mensagem para: wa.me/5511981458247"})
   
 break
 case "menudono":
@@ -397,7 +397,12 @@ case "menudono":
   }
 break
 case 'dono':
-enviar("NICK: M7 \n WA.ME: wa.me/5511981458247")
+m7.sendMessage(from, {image: "./logo.png"}, {caption: 
+`
+Username: M7
+Github: https://github.com/M7coding
+Repositório do SyxBot: https://github.com/M7coding/syx2
+`}, {quoted: selo2})
 break
 //saporra n ta funcionando 
 case 'imgpralink':    
@@ -420,7 +425,7 @@ case 'playaudio':
   await enviar("aguarde")
   var {url, titulo, canal, thumb, data, views} = await fetchJson(`https://api-team-of-hero.herokuapp.com/api/yt/playmp3?query=${args}&apikey=apiteam`).catch(err => enviar('Ocorreu um erro!'));
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${titulo}&apikey=Wv4HkHb5jY`)
-  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {ptt: true}, {quoted: info});
+  await m7.sendMessage(from, {audio: {url: teste.resultado.link }, mimetype: 'audio/mp4'}, {ptt: true}, {quoted: selo});
 break
 case 'play':
   await enviar("aguarde")
