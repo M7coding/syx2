@@ -1,8 +1,11 @@
 // syxbot by m7 
 // fiz no meu tempo livre ent ta uma bosta 
+// deixa o crédito, to de olho🧐
+// bot da X07 team
+
 const {
  default:makeWASocket,
-  DconnectReason,
+  DisconnectReason,
   fetchLatestBaileysVersion,
   useSingleFileAuthState
  } = require('@adiwajshing/baileys');
@@ -36,12 +39,12 @@ colors: [`${cores}`,`green`]
 async function startBot () {
 console.log(banner.string)
 const m7 = makeWASocket({
-logger: pino({ level: "silent" }),printQRInTerminal: true,auth: state})
+logger: Pino({ level: "silent" }),printQRInTerminal: true,auth: state})
 m7.ev.on("connection.update", (update) => {
-const { connection, lastDconnect } = update
+const { connection, lastDisconnect } = update
 if(connection === "close") {
-const shouldReconnect = (lastDconnect.error)?.output?.statusCode !== DconnectReason.loggedOut
-console.log("Conexão fechada devido a", lastDconnect.error, "Tentando reconectar...", shouldReconnect)
+const shouldReconnect = (lastDisconnect.error)?.output?.statusCode !== DisconnectReason.loggedOut
+console.log("Conexão fechada devido a", lastDisconnect.error, "Tentando reconectar...", shouldReconnect)
 if(shouldReconnect) {
 startBot()}
 } else if(connection === "open") {
@@ -53,7 +56,7 @@ const { fetchJson } = require("./fetcher")
 m7.ev.on("messages.upsert", async m => {
 try {
 const info = m.messages[0]
-// await m7.sendReadReceipt(info.key.remoteJid, info.key.participant, [info.key.id]) baileys antiga
+ await m7.readMessages(info.key.remoteJid, info.key.participant, [info.key.id])
 if (!info.key.participant) info.key.participant = info.key.remoteJid
 info.key.participant = info.key.participant.replace(/:[0-9]+/gi, "")
 if (!info.message) return
@@ -129,18 +132,18 @@ m7.sendMessage(from, { text: texto }, {quoted: info})}
 // const AntiLink =  antilink.includes(from)
 const botNumber = m7.user.jid
 const isGroup = info.key.remoteJid.endsWith("@g.us")
-const sender = Group ? info.key.participant : info.key.remoteJid
-const groupMetadata = Group ? await m7.groupMetadata(from) : ""
+const sender = isGroup ? info.key.participant : info.key.remoteJid
+const groupMetadata = isGroup ? await m7.groupMetadata(from) : ""
 
-const groupMembers = Group ? groupMetadata.participants : ''
+const groupMembers = isGroup ? groupMetadata.participants : ''
 
 // const groupDesc = Group ? groupMetadata.desc : ''
 
-const groupAdmins = Group ? await groupMembers.filter(v => v.admin !== null).map(v => v.id): '';
-const isGroupAdmins = Group ? groupAdmins.includes(sender): false;
+const groupAdmins = isGroup ? await groupMembers.filter(v => v.admin !== null).map(v => v.id): '';
+const isGroupAdmins = isGroup ? groupAdmins.includes(sender): false;
 
 const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
-const groupName = Group ? groupMetadata.subject : ""
+const groupName = isGroup ? groupMetadata.subject : ""
 const pushname = info.pushName ? info.pushName : ""
 
 
@@ -161,7 +164,14 @@ const mentions = (teks, memberr, id) => {
 }
 
 const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
-
+mess = {
+wait: `[ ❗ ] Aguarde...Um Momento , Já Estou Fazendo.`,
+admin: `[ ❗ ] Comando Só Pra Admins.`,
+Badmin: `[ ❗ ]  Não Sou Admin.`,
+rg: `[ ❗ ] Regιѕтro Oвrιgaтorιo!!\n\ndιgιтe: login`,
+group: `[ ❗ ] Coмando ѕó ғυcιona eм grυpo!`,
+client: `[ ❗ ] Só мeυ dono!`
+}
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
@@ -247,7 +257,17 @@ const selo = {key: {fromMe: false,participant: `0@s.whatsapp.net`, ...(from ? { 
   const selo2 = { key: { participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `6283136505591-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `${pushname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;M7,;;;\nFN:M7,\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': {url: `./logo.png`},sendEphemeral: true}}}
 switch (comando)
 {
-  
+case "revoke":
+case "revogar":
+if (!isGroup){
+  return enviar(mess.group)
+}
+if (!isGroupAdmins){
+  return enviar(mess.admin)
+}
+await m7.groupRevokeInvite(from)
+return enviar("Link do grupo revogado com sucesso!")
+break
 case 'banfake':
  var userUm = groupMembers[0]
  if (!userUm.split('@')[0].startsWith(55)){
@@ -301,56 +321,68 @@ case 'promover':
   chatMd(args, "promote")
   enviar("Usuário promovido a admintrador")
 break
+case "prefix":
+  if (sender == "5511981458247@s.whatsapp.net"){
+    if (args.lenght == 0){
+      return enviar(`o seu animal, ta faltando argumentos! exemplo de uso: ${prefix}prefix $`)
+    }
+    var prefixAntigo = prefix
+    prefix = args
+    return enviar(`Prefixo foi alterado de ${prefixAntigo} para ${prefix}!`)
+  } // mude o número para o seu
+  else{
+    return enviar(mess.client)
+  }
+break
 case 'menu':
 await m7.sendMessage(from, {text: "Aguarde..."}, {quoted: selo})
 var gay = await getBuffer(`https://ayu-team.herokuapp.com/api/canvas/menu?nome=${pushname}&perfil=https://ayu-team.herokuapp.com/img/ayu.jpg&fundo=https://telegra.ph/file/14c9a6ce9c4e3e43a8ee1.jpg&cor1=ffea00&cor2=ffea00&numero=${sender.split('@')[0]}&titulo=MENU&apikey=Wv4HkHb5jY`)
 templateButtons = [
 
 
-{ quickReplyButton: { dplayText: 'Menu dono', id: `${prefix}menudono`}},
+{ quickReplyButton: { displayText: 'Ping', id: `${prefix}ping`}},
 ]
 var templateMessage = {
   image: gay,
   caption: `
 ┌───────────────
-│
 ╠〢「 © syxBot 」
-│Ele demora um pouco no .play, não flodem
-|comandos!
-|Bot esta com a maioria dos comandos off, estou
-|refazendo eles
-|
+│~💎Bot em desenvolvimento 
+|~💎Hospedado na heroku
+|~💎Creditos a M7coding
 └───────────────
 ┌───────────────
-|HORA: ${hora}
-|PREFIXO: ${prefix}
+|√🚩HORA: ${hora}
+|√🚩PREFIXO: ${prefix}
 └───────────────
 ┌───────────────
-╠〢「 PESQUAR/BAIXAR 」
-│
-│🚩${prefix}play
-│🚩${prefix}ytsearch
-│
+╠〢「 PESQUISAR/BAIXAR 」
+│×🤒${prefix}play
+│×🤒${prefix}playaudio
+└───────────────
+┌───────────────
+╠〢「 MENU DONO」
+│×🤒${prefix}prefix - muda o prefixo
 └───────────────
 ┌───────────────
 ╠〢「 CMDS/TODOS 」
 │
-│🚩${prefix}dono
-│🚩${prefix}ping [MANUTENÇÃO]
-│🚩${prefix}fazernick [TO SEM API]
-│🚩${prefix}imgpralink [EM DESENVOLVIMENTO]
-│🚩${prefix}dono
-│🚩${prefix}ban @
-│🚩${prefix}add @
-│🚩${prefix}encurtar
-│🚩${prefix}limpar
-│🚩${prefix}pornhub
-│🚩${prefix}demote @
-│🚩${prefix}promote @
-│🚩${prefix}grupo f - fecha o grupo
-│🚩${prefix}grupo a - abre o grupo
-│🚩${prefix}banfake - use so quando um número
-|🚩fake tiver entrado no grupo 
+│•🤕${prefix}dono
+│•🤕${prefix}ping 
+│•🤕${prefix}fazernick [TO SEM API]
+│•🤕${prefix}imgpralink [EM DESENVOLVIMENTO]
+│•🤕${prefix}dono
+│•🤕${prefix}ban @
+│•🤕${prefix}add @
+│•🤕${prefix}encurtar
+│•🤕${prefix}limpar
+│•🤕${prefix}pornhub
+│•🤕${prefix}demote @
+│•🤕${prefix}promote @
+│•🤕${prefix}grupo f - fecha o grupo
+│•🤕${prefix}grupo a - abre o grupo
+|•🤕${prefix}link - manda o link do grupo
+|•🤕${prefix}revogar - revoga o link do grupo 
 └───────────────`,
 footer: 'syxBot',
 templateButtons: templateButtons
@@ -364,6 +396,15 @@ break
 case 'add':
   chatMd(args, "add")
   enviar("Usuário adicionado!")
+break
+case "link":
+  if (!isGroup){ return enviar("não e um grupo")}
+  if (!isGroupAdmins){
+    return enviar("Você não e admin!")
+  }
+  const lk = await m7.groupInviteCode(from)
+  return enviar(lk)
+
 break
 case "pornhub":
   if (args.length == 0){
@@ -382,7 +423,7 @@ const timestamp = speed();
 uptime = process.uptime()
 const latensi = speed() - timestamp
 uptime = process.uptime()
-m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Data : │ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
+m7.sendMessage(from, {text: `┌───────────────┐\n│ Velocidade Do Bot + Informações \n│ \n│ Velocidade : ${latensi.toFixed(4)}\n│ \n┌─────────────┐\n│ Tempo Ativo : \n│ [ ${kyun(uptime)} ] \n└───────────\n│ \n│ Solicitou Comando : ${pushname}\n│ \n└─────────〔 ${hora} 〕`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: 'Ver PING Denovo', id: `${prefix}ping`}}, ]})
 break
 case 'id':
   var groupMembers2 = await groupMembers 
@@ -398,7 +439,7 @@ case "menudono":
   }
 break
 case 'dono':
-m7.sendMessage(from, {image: {url:"./logo.png"}}, {caption: 
+m7.sendMessage(from, {image: {url:"./logo.png"}, caption: 
 `
 Username: M7
 Github: https://github.com/M7coding
@@ -438,8 +479,8 @@ case 'play':
   var teste = await fetchJson(`https://ayu-team.herokuapp.com/api/dl/play?nome=${args}&apikey=Wv4HkHb5jY`)
   var foto21 = await getBuffer(`${thumb}`)
   templateButtons =[
-    { quickReplyButton: { dplayText: 'Audio', id: `${prefix}playaudio ${args}`}},
-    {quickReplyButton: { dplayText: 'Video', id: `${prefix}playvideo ${args}`}}
+    { quickReplyButton: { displayText: 'Audio', id: `${prefix}playaudio ${args}`}},
+    {quickReplyButton: { displayText: 'Video', id: `${prefix}playvideo ${args}`}}
     ]
   templateMessage = {
     image: foto21,
@@ -448,7 +489,7 @@ Titulo: ${titulo}
 Canal: ${canal}
 Data de upload: ${data}
 Vualizações: ${views}
-USE .playaudio ${args}
+Use .playaudio ${args} se os botões não aparecerem!
     `,
     footer: 'SyxBot',
     templateButtons: templateButtons
@@ -504,7 +545,10 @@ case 'encurtar':
 break
 
 default :
-
+if (budy){
+  if (!isCmd){
+  await m7.sendPresenceUpdate('composing', from) }
+}
 if (budy == `${prefix}${comando}`){
   
 m7.sendMessage(from, {text: `╭─────────────\n│\n││• Comando: Não Exte\n││• Data: ${data}\n││• Hora: ${hora}\n││• Use .menu\n│\n╰─────────────`, footer: `© syx-bot`, templateButtons: [ { quickReplyButton: { displayText: '━━━━━━━━━━━━━━━', id: `${prefix}menu`}}, ]})
