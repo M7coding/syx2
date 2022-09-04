@@ -10,6 +10,7 @@
     "mime-types": "^2.1.35",
     "moment-timezone": "^0.5.37",
     "node-fetch": "2.6.6",
+    "performance-now": "^2.1.0",
     "qrcode-terminal": "^0.12.0"
   }
 }

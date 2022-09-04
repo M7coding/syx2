@@ -12,6 +12,7 @@ const {
  const pino = require('pino');
  const Pino = require('pino');
  const fs = require('fs');
+ const speed = require('performance-now');
  const axios = require("axios")
  const cfonts = require("cfonts")
 const { state, saveState } = useSingleFileAuthState("./qrcode.json")
@@ -120,14 +121,14 @@ return new Prome(resolve => setTimeout(resolve, ms))}
 const args = body.trim().split(/ +/).slice(1)
 const q = args.join(' ')
 const comando = body.slice(1).trim().split(/ +/).shift().toLowerCase()
-const Cmd = body.startsWith(prefix)
+const isCmd = body.startsWith(prefix)
 const enviar = (texto) => {
 m7.sendMessage(from, { text: texto }, {quoted: info})}
 
 
 // const AntiLink =  antilink.includes(from)
 const botNumber = m7.user.jid
-const Group = info.key.remoteJid.endsWith("@g.us")
+const isGroup = info.key.remoteJid.endsWith("@g.us")
 const sender = Group ? info.key.participant : info.key.remoteJid
 const groupMetadata = Group ? await m7.groupMetadata(from) : ""
 
@@ -136,9 +137,9 @@ const groupMembers = Group ? groupMetadata.participants : ''
 // const groupDesc = Group ? groupMetadata.desc : ''
 
 const groupAdmins = Group ? await groupMembers.filter(v => v.admin !== null).map(v => v.id): '';
-const GroupAdmins = Group ? groupAdmins.includes(sender): false;
+const isGroupAdmins = Group ? groupAdmins.includes(sender): false;
 
-const BotGroupAdmins = groupAdmins.includes(botNumber) || false
+const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 const groupName = Group ? groupMetadata.subject : ""
 const pushname = info.pushName ? info.pushName : ""
 
@@ -164,35 +165,35 @@ const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
-if (!Group && Cmd){ console.log(`\n -> COMANDO NO PV: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
+if (!isGroup && isCmd){ console.log(`\n -> COMANDO NO PV: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
 }
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐍𝐨 𝐏𝐫𝐢𝐯𝐚𝐝𝐨
 
-if (!Cmd && !Group){
+if (!isCmd && !isGroup){
   console.log(`\n -> MENSAGEM NO PV: NOME DO USUÁRIO:${pushname} MENSAGEM: ${budy} `)
 }
 
 // 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
-if (Cmd && Group) {
+if (isCmd && isGroup) {
   console.log(`\n -> COMANDO EM GRUPO: NOME DO USUÁRIO:${pushname} COMANDO: ${comando} `)
 }
 
 // 𝐌𝐞𝐧𝐬𝐚𝐠𝐞𝐧 𝐄𝐦 𝐆𝐫𝐮𝐩𝐨
 
-if (!Cmd && Group){
+if (!isCmd && isGroup){
   console.log(`\n -> MENSAGEM EM GRUPO: NOME DO GRUPO:${groupName} MENSAGEM: ${budy} `)
 }
-const QuotedMsg = type === "extendedTextMessage" && content.includes("textMessage")
-const QuotedImage = type === "extendedTextMessage" && content.includes("imageMessage")
-const QuotedVideo = type === "extendedTextMessage" && content.includes("videoMessage")
-const QuotedDocument = type === "extendedTextMessage" && content.includes("documentMessage")
-const QuotedAudio = type === "extendedTextMessage" && content.includes("audioMessage")
-const QuotedSticker = type === "extendedTextMessage" && content.includes("stickerMessage")
-const QuotedContact = type === "extendedTextMessage" && content.includes("contactMessage")
-const QuotedLocation = type === "extendedTextMessage" && content.includes("locationMessage")
-const QuotedProduct = type === "extendedTextMessage" && content.includes("productMessage")
+const isQuotedMsg = type === "extendedTextMessage" && content.includes("textMessage")
+const isQuotedImage = type === "extendedTextMessage" && content.includes("imageMessage")
+const isQuotedVideo = type === "extendedTextMessage" && content.includes("videoMessage")
+const isQuotedDocument = type === "extendedTextMessage" && content.includes("documentMessage")
+const isQuotedAudio = type === "extendedTextMessage" && content.includes("audioMessage")
+const isQuotedSticker = type === "extendedTextMessage" && content.includes("stickerMessage")
+const isQuotedContact = type === "extendedTextMessage" && content.includes("contactMessage")
+const isQuotedLocation = type === "extendedTextMessage" && content.includes("locationMessage")
+const isQuotedProduct = type === "extendedTextMessage" && content.includes("productMessage")
 
 function chatMd(usR, tipo){
   
@@ -201,7 +202,7 @@ function chatMd(usR, tipo){
     return enviar("Função incompleta! Verifique o comando!")
   }
   
-  if (GroupAdmins){
+  if (isGroupAdmins){
     if (tipo == "add2"){
       return m7.groupParticipantsUpdate("120363045266984374@g.us", [usR], "add")
     }
