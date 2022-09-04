@@ -219,24 +219,24 @@ function chatMd(usR, tipo){
    return enviar("Somente os adms podem usar esse comando!")
   }
 }
-client.ev.on('group-participants.update', async (anu) => {
+m7.ev.on('group-participants.update', async (anu) => {
 console.log(anu)
 try {
-let metadata = await client.groupMetadata(anu.id)
+let metadata = await m7.groupMetadata(anu.id)
 let participants = anu.participants
 for (let num of participants) {
 memb = metadata.participants.length
 try {
-ppimg = await client.profilePictureUrl(`${sender.split("@")[0]}@c.us`, "image")
+ppimg = await m7.profilePictureUrl(`${sender.split("@")[0]}@c.us`, "image")
 } catch(e) {
 ppimg = logo
 }
 perfil = await getBuffer(ppimg)
 
 if (anu.action == 'add') {
-client.sendMessage(anu.id, { image: perfil, caption: `oi @${num.split('@')[0]}\nBem vindo(a) 𝘢𝘰 𝘨𝘳𝘶𝘱𝘰 :\n*${metadata.subject}*\n  segue as regras, prefixo do bot e .` })
+m7.sendMessage(anu.id, { image: perfil, caption: `oi @${num.split('@')[0]}\nBem vindo(a) 𝘢𝘰 𝘨𝘳𝘶𝘱𝘰 :\n*${metadata.subject}*\n  segue as regras, prefixo do bot e .` })
 } else if (anu.action == 'remove') {
-client.sendMessage(anu.id, { image: perfil, caption: ` Ol∆ Galer∆ do Grp:\n*${metadata.subject}*\n\nMembro: @${num.split('@')[0]}\n\nSaiu do Grp ou foi Banido.` })}
+m7.sendMessage(anu.id, { image: perfil, caption: ` Ol∆ Galer∆ do Grp:\n*${metadata.subject}*\n\nMembro: @${num.split('@')[0]}\n\nSaiu do Grp ou foi Banido.` })}
 }} catch (err) {
 console.log(err)
 }
